@@ -2,6 +2,7 @@
 menu:
   Home: /
   Archives: /archives
+  ACM-落幕时刻: /RetiredTime
 rss: /atom.xml
 
 # Content
@@ -33,7 +34,7 @@ fb_admins:
 fb_app_id:
 
 # Duoshuo
-duoshuo_shortname: 
+duoshuo_shortname: bu540402githubio
 
 # Baidu share
 baidushare: true

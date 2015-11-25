@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Coding4Fun]]></title>
+  <title><![CDATA[Learning4Fun]]></title>
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
@@ -32,6 +32,1309 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[二分搜索总结]]></title>
+    <link href="http://yoursite.com/2014/06/11/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2014/06/11/二分搜索总结/</id>
+    <published>2014-06-11T08:38:51.000Z</published>
+    <updated>2015-11-25T04:37:58.648Z</updated>
+    <content type="html"><![CDATA[<p><strong>若 p(x)成立，对于所有的y&gt;x, p(y)都成立。当然，若p(x) 不成立，所有y &lt; x, p(y)都不成立。</strong></p>
+<h5 id="使得p（x）成立的第一个满足条件的位置">使得p（x）成立的第一个满足条件的位置</h5><pre config="brush:cpp;toolbar:false;">
+int binary_search(int a[], int low, int high)
+{
+    int mid;
+    while (low &lt; high)
+    {
+        mid = low + (high - low) / 2;
+        if (p(mid))
+            high = mid;
+        else
+            low = mid + 1;
+        if (p(low) == false)
+            return -1;
+        return low;
+    }
+}
+</pre>
+
+<h5 id="使得p(x)成立的最后一个满足条件的位置">使得p(x)成立的最后一个满足条件的位置</h5><pre config="brush:cpp;toolbar:false;">
+int binary_search(int a[], int low, int high)
+{
+    int mid;
+    while (low &lt; high)
+    {
+        mid = (high + low+1) / 2;
+        if (p(mid))
+            low = mid;
+        else
+            hight= mid - 1;
+        if (p(low) == false)
+            return -1;
+        return low;
+    }
+}
+</pre>
+
+<h5 id="第一个大于等于V">第一个大于等于V</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h) &gt;&gt; 1;
+        if (a[m]&gt;= v)
+            h = m;
+        else
+            l = m + 1;
+    }
+    if(a[l]&lt;v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="等于V的第一个">等于V的第一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h) &gt;&gt; 1;
+        if (a[m]&gt;= v)
+            h = m;
+        else
+            l = m + 1;
+    }
+    if(a[l]!=v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="大于V的第一个">大于V的第一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h) &gt;&gt; 1;
+        if (a[m]&gt; v)
+            h = m;
+        else
+            l = m + 1;
+    }
+    if(a[l]&lt;=v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="小于等于的最后一个">小于等于的最后一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h+1) &gt;&gt; 1;
+        if (a[m]&lt;=v)
+            l = m;
+        else
+            h = m - 1;
+    }
+    if(a[l]&gt;v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="小于的最后一个">小于的最后一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h+1) &gt;&gt; 1;
+        if (a[m]&lt;v)
+            l = m;
+        else
+            h = m - 1;
+    }
+    if(a[l]&gt;=v)return -1;
+    return l;
+}
+</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>若 p(x)成立，对于所有的y&gt;x, p(y)都成立。当然，若p(x) 不成立，所有y &lt; x, p(y)都不成立。</strong></p>
+<h5 id="使得p（x）成立的第一个满足条件的位置">使得p（x）成立的第一个满足条件的位置</h]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1613]]></title>
+    <link href="http://yoursite.com/2013/10/11/ural-1613/"/>
+    <id>http://yoursite.com/2013/10/11/ural-1613/</id>
+    <published>2013-10-11T12:22:37.000Z</published>
+    <updated>2015-11-25T04:37:58.633Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：给出n个数，给出q个询问L R V.对于每个询问问L R之间是否存在v
+ *解法：把原数组连同下标一起排序。对于每个询问问查询一个第一个大于等于v且下标大于等于L的
+ *的数字。若该数字和v相同且下标在LR之间。则为1否则为0.
+ * 
+ */
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+//#include &lt;fstream&gt;
+#include &lt;sstream&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+#include &lt;cstdio&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;ctime&gt;
+#include &lt;list&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#include &lt;math.h&gt;
+using namespace std;
+struct data
+{
+        int val;
+        int rank;
+        bool operator &lt;(const data &amp;d)const
+        {
+            if (d.val == val)
+                return rank &lt; d.rank;
+            return val &lt; d.val;
+        }
+
+};
+vector&lt;data&gt; base;
+int main()
+{
+    freopen("data.in", "r", stdin);
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++)
+    {
+        data a;
+        cin &gt;&gt; a.val;
+        a.rank = i;
+        base.push_back(a);
+    }
+    sort(base.begin(), base.end());
+    int q;
+    cin &gt;&gt; q;
+    vector&lt;data&gt;::iterator it;
+    for (int i = 0; i &lt; q; i++)
+    {
+        int x, y, d;
+        data a;
+        cin &gt;&gt; x &gt;&gt; y &gt;&gt; d;
+        a.val = d;
+        a.rank = x;
+        it = lower_bound(base.begin(), base.end(), a);
+        if (it-&gt;val == d &amp;&amp; (it-&gt;rank &gt;= x &amp;&amp; it-&gt;rank &lt;= y))
+            cout &lt;&lt; 1;
+        else
+            cout &lt;&lt; 0;
+
+    }
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：给出n个数，给出q个询问L R V.对于每个询问问L R之间是否存在v
+ *解法：把原数组连同下标一起排序。对于每个询问问查询一个第一个大于等于v且下标大于等于L的
+ *的数字。若该数字和v相]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1016]]></title>
+    <link href="http://yoursite.com/2013/09/10/ural-1016/"/>
+    <id>http://yoursite.com/2013/09/10/ural-1016/</id>
+    <published>2013-09-10T08:05:22.000Z</published>
+    <updated>2015-11-25T04:37:58.633Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：给出一个骰子，六个面标记数字。放在国际象棋的棋盘里。
+ * 没滚动一次，花费着地的那个面标记数字那么多的费用。
+ * 给出一个起点与终点。问最小费用是多少。
+ * 解法：对于每个点骰子的状态有24种，所以把每个点拆成24种状态。
+ * 这样就变成了一个最短路问题。在实现过程中，用map把6个面对应的
+ * 数字序列映射成24种状态。两个点之间可转移的状态认为有一条边。
+ * 
+ */
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+#include &lt;cstdio&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;math.h&gt;
+#include &lt;ctime&gt;
+#include &lt;list&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#include&lt;time.h&gt;
+using namespace std;
+#define LL long long
+#define inf 0x3fffffff
+map&lt;LL, int&gt; mm;
+int dist[8][8][24];
+bool used[8][8][24];
+int path[8][8][24][3];
+int dir[4][2] =
+{
+{ 0, 1 },
+{ 0, -1 },
+{ -1, 0 },
+{ 1, 0 } };
+int hash = 0;
+struct data
+{
+        int pane[6];
+        LL gethash()
+        {
+            LL ans = 0;
+            for (int i = 0; i &lt; 6; i++)
+            {
+                ans = ans * 1000 + pane[i];
+            }
+            return ans;
+        }
+
+};
+int roll(int dir, data &amp;a, data b)
+{
+    if (dir == 0)
+    {
+        a.pane[2] = b.pane[3];
+        a.pane[3] = b.pane[4];
+        a.pane[4] = b.pane[5];
+        a.pane[5] = b.pane[2];
+    }
+    if (dir == 1)
+    {
+        a.pane[2] = b.pane[5];
+        a.pane[3] = b.pane[2];
+        a.pane[4] = b.pane[3];
+        a.pane[5] = b.pane[4];
+    }
+    if (dir == 2)
+    {
+        a.pane[0] = b.pane[4];
+        a.pane[1] = b.pane[2];
+        a.pane[2] = b.pane[0];
+        a.pane[4] = b.pane[1];
+    }
+    if (dir == 3)
+    {
+        a.pane[0] = b.pane[2];
+        a.pane[1] = b.pane[4];
+        a.pane[2] = b.pane[1];
+        a.pane[4] = b.pane[0];
+    }
+}
+int check(int x, int y)
+{
+    if (x &lt; 0 || y &lt; 0 || x &gt; 7 || y &gt; 7)
+        return 0;
+    return 1;
+}
+void spfa(int x, int y, data a)
+{
+    memset(path, -1, sizeof(path));
+    queue&lt;int&gt; q;
+    queue&lt;data&gt; dq;
+    q.push(x);
+    q.push(y);
+    memset(used, 0, sizeof(used));
+    for (int i = 0; i &lt; 8; i++)
+        for (int j = 0; j &lt; 8; j++)
+            for (int k = 0; k &lt; 24; k++)
+            {
+                dist[i][j][k] = inf;
+            }
+    LL tp = a.gethash();
+    if (!mm[tp])
+        mm[tp] = hash++;
+    used[x][y][mm[tp]] = 1;
+    dist[x][y][mm[tp]] = a.pane[4];
+    q.push(mm[tp]);
+    dq.push(a);
+    while (!q.empty())
+    {
+        int ux, uy, ut;
+        ux = q.front();
+        q.pop();
+        uy = q.front();
+        q.pop();
+        ut = q.front();
+        q.pop();
+        data u = dq.front();
+        dq.pop();
+        used[ux][uy][ut] = 0;
+        for (int i = 0; i &lt; 4; i++)
+        {
+            data v = u;
+            roll(i, v, u);
+            int vx, vy;
+            vx = ux + dir[i][0];
+            vy = uy + dir[i][1];
+            LL tp = v.gethash();
+            if (!mm[tp])
+                mm[tp] = hash++;
+            int vt = mm[tp];
+            if (check(vx, vy))
+            {
+                if (dist[vx][vy][vt] &gt; dist[ux][uy][ut] + v.pane[4])
+                {
+                    dist[vx][vy][vt] = dist[ux][uy][ut] + v.pane[4];
+                    path[vx][vy][vt][0] = ux;
+                    path[vx][vy][vt][1] = uy;
+                    path[vx][vy][vt][2] = ut;
+
+                    if (!used[vx][vy][vt])
+                    {
+                        //cout&lt;&lt;vx&lt;&lt;" "&lt;&lt;vy&lt;&lt;" "&lt;&lt;    dist[vx][vy][vt]&lt;&lt;endl;
+                        //cout&lt;&lt;ux&lt;&lt;" "&lt;&lt;uy&lt;&lt;" "&lt;&lt;dist[ux][uy][ut]&lt;&lt;endl;;
+                        q.push(vx);
+                        q.push(vy);
+                        q.push(vt);
+                        dq.push(v);
+                        used[vx][vy][vt] = 1;
+                    }
+                }
+            }
+        }
+    }
+}
+vector&lt;string&gt; res;
+void getans(int tx, int ty, int tt)
+{
+    if (tx == -1 || ty == -1 || tt == -1)
+        return;
+    string s;
+    s.push_back('a' + 7 - ty);
+    s.push_back('1' + 7 - tx);
+    //cout&lt;&lt;s&lt;&lt;endl;
+    getans(path[tx][ty][tt][0], path[tx][ty][tt][1], path[tx][ty][tt][2]);
+    res.push_back(s);
+
+}
+int main()
+{
+    freopen("data.in", "r", stdin);
+    string s, e;
+    cin &gt;&gt; s &gt;&gt; e;
+    data a;
+    int tx, ty, x, y;
+    x = s[0] - 'a';
+    y = s[1] - '1';
+    tx = e[0] - 'a';
+    ty = e[1] - '1';
+    for (int i = 0; i &lt; 6; i++)
+    {
+        cin &gt;&gt; a.pane[i];
+    }
+    spfa(7 - y, 7 - x, a);
+    int ans = inf;
+    int pos;
+    for (int i = 0; i &lt; 24; i++)
+    {
+        if (ans &gt; dist[7 - ty][7 - tx][i])
+        {
+            ans = dist[7 - ty][7 - tx][i];
+            pos = i;
+        }
+    }
+    cout &lt;&lt; ans &lt;&lt; endl;
+    getans(7 - ty, 7 - tx, pos);
+    for (int i = 0; i &lt; res.size(); i++)
+    {
+        cout &lt;&lt; res[i] &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：给出一个骰子，六个面标记数字。放在国际象棋的棋盘里。
+ * 没滚动一次，花费着地的那个面标记数字那么多的费用。
+ * 给出一个起点与终点。问最小费用是多少。
+ * 解法：对于每个点骰子的状态有]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[hdu 4714  Tree2cycle]]></title>
+    <link href="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/"/>
+    <id>http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/</id>
+    <published>2013-09-09T06:06:21.000Z</published>
+    <updated>2015-11-25T04:37:58.648Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：一个一棵树，去掉一条边的代价为1,加上一条边的代价也为1
+ * 问用最小的代价使得这个树变成一个收尾相接的圆环。
+ * 解法：先使得一棵树变成一条链。则出了首位点其他点的度都为2
+ * 对于每个点来说如果其度为d且d&gt;2则需要去点的d-2条边。此时
+ * 可以将问题分两种情况假设T(u)是树上以u为节点的子树。
+ * 那么砍掉d-2条边时 
+ * 情况1：砍掉的边都是与其子树相连的边，则此时形成一个以u为起点的链。如：/ 形状
+ * 情况2：砍掉其父亲边，保留两条边与子节点相连。此时形成以u为中间节点的链。如 ^ 形状
+ * 那么我们记录每个子树这两种情况下是的在子树中得到一条链的最小费用
+ * f[u][1]与f[u][2];
+ * 容易可以推知 f[u][2]&lt;=f[u][1]
+ * 下面推出状态转移方程：
+ * 情况一：若保留一条边与一个子节点相连，对于砍掉的边花费为f[v][1]+2
+ * 那么若全部砍掉所有子节，其花费的和为sum。
+ * 则f[u][1]=sum-max(f[v][1]+2-f[v][2]);
+ * 情况二：此情况要保留两条边。则保留最大值与次大值就好了。
+ * ps：该题目点数过多直接深搜为爆栈空间。在杭电上用c++可以加栈过关
+ * 现场赛栈空间有限且不能加栈空间，所以需要把深搜改为循环模拟递归用栈来实现
+ *
+ */
+//#pragma comment(linker, "/STACK:1024000000,1024000000")
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+using namespace std;
+#define vN 1000101
+#define vE 100001*2
+#define inf 0x3fffffff
+struct edge
+{
+    int v, next;
+} e[vN * 2];
+int head[vN], used[vN], en = 0;
+int dp[vN][2];
+void addedge(int x, int y)
+{
+    e[en].v = y;
+    e[en].next = head[x];
+    head[x] = en++;
+    e[en].v = x;
+    e[en].next = head[y];
+    head[y] = en++;
+}
+stack&lt;int&gt; st;
+int father[vN];
+void dfss(int x)
+{
+    st.push(x);
+    father[x] = 0;
+    while (!st.empty())
+    {
+        int u = st.top();
+        if (used[u])
+        {
+            int fmax = 0, smax = 0;
+            int sum = 0;
+            for (int i = head[u]; i != -1; i = e[i].next)
+            {
+                int v = e[i].v;
+                if (v == father[u])
+                    continue;
+                sum += dp[v][1] + 2;
+                int temp = dp[v][1] + 2 - dp[v][0];
+                if (temp &gt; smax)
+                {
+                    smax = temp;
+                    if (smax &gt; fmax)
+                    {
+                        int tp = fmax;
+                        fmax = smax;
+                        smax = tp;
+                    }
+                }
+
+            }
+            dp[u][0] = sum - fmax;
+            dp[u][1] = sum - fmax - smax;
+            st.pop();
+        }
+        else
+        {
+            used[u] = 1;
+            for (int i = head[u]; i != -1; i = e[i].next)
+            {
+                int v = e[i].v;
+                if (!used[v])
+                {
+                    st.push(v);
+                    father[v] = u;
+                }
+
+            }
+        }
+    }
+}
+
+int main()
+{
+    //freopen("data.in", "r", stdin);
+    int t;
+    scanf("%d", &amp;t);
+    while (t--)
+    {
+        en = 0;
+        int n;
+        scanf("%d", &amp;n);
+        memset(used, 0, sizeof(int) * (n + 1));
+        memset(dp, 0, sizeof(int) * (n + 1));
+        memset(head, -1, sizeof(int) * (n + 1));
+        for (int i = 0; i &lt; n - 1; i++)
+        {
+            int x, y;
+            scanf("%d%d", &amp;x, &amp;y);
+            addedge(x, y);
+        }
+        dfss(1);
+        printf("%d\n", min(dp[1][0], dp[1][1]) + 1);
+    }
+
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：一个一棵树，去掉一条边的代价为1,加上一条边的代价也为1
+ * 问用最小的代价使得这个树变成一个收尾相接的圆环。
+ * 解法：先使得一棵树变成一条链。则出了首位点其他点的度都为2
+ * 对于每]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1109]]></title>
+    <link href="http://yoursite.com/2013/09/06/ural-1109/"/>
+    <id>http://yoursite.com/2013/09/06/ural-1109/</id>
+    <published>2013-09-06T12:45:27.000Z</published>
+    <updated>2015-11-25T04:37:58.633Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：即将到来的会议A国派出M个代表，B国派出N个代表 (M and N &lt;= 1000)
+ * A国的代表编号为1, 2, ..., M ;B国的代表编号为1, 2, ..., N .开会前，
+ * 要选择K对代表。每一对代表必须一个是A国的，一个是B国的。A国的成员i与B国的成员j就可结对
+ * CEO想建立最少的电话联系。
+ * 首行给定M,N,K。以下K行为结对的代表P1,P2。P1是A国的成员，P2是B国的成员。
+ * 输出所需的最少电话联系。
+ * 解法：最小路径覆盖：顶点数 - 最大匹配数
+ * 
+ */
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+using namespace std;
+#define vN 1005
+#define vE 100001*2
+int map[vN][vN],used[vN],match[vN];
+int n,m,k;
+int hungary(int x)
+{
+    for(int i=1;i&lt;=m;i++)
+    {
+        if(map[x][i]&amp;&amp;!used[i])
+        {
+            used[i]=1;
+            if(match[i]==-1||hungary(match[i]))
+            {
+                match[i]=x;
+                return 1;
+            }
+
+        }
+    }
+    return 0;
+}
+void inihungary()
+{
+    for(int i=0;i&lt;=n;i++)
+    for(int j=0;j&lt;=m;j++)
+    {
+        match[j]=-1;
+        used[j]=0;
+        map[i][j]=0;
+    }
+}
+int sovle()
+{
+    int res=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+            memset(used,0,sizeof(used));
+            res+=hungary(i);
+    }
+    return res;
+}
+int main()
+{
+    //freopen("data.in","r",stdin);
+
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+    inihungary();
+    for(int i=0;i&lt;k;i++)
+    {
+        int x,y;
+        cin&gt;&gt;x&gt;&gt;y;
+        map[x][y]=1;
+    }
+    cout&lt;&lt;m+n-sovle()&lt;&lt;endl;
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：即将到来的会议A国派出M个代表，B国派出N个代表 (M and N &lt;= 1000)
+ * A国的代表编号为1, 2, ..., M ;B国的代表编号为1, 2, ..., N .开会前]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1208]]></title>
+    <link href="http://yoursite.com/2013/09/06/ural-1208/"/>
+    <id>http://yoursite.com/2013/09/06/ural-1208/</id>
+    <published>2013-09-06T06:41:51.000Z</published>
+    <updated>2015-11-25T04:37:58.633Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/* 题意:给出n支acm队伍的名单，这名单中有的队员会重复出现在不同的队伍中。问
+ * 能从中挑选出最多少支不出现重复队员的队伍。
+ * 解法：求最大独立子集。NP完全的。数据小。暴力搜索。注意一个剪枝。见代码
+ */
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+using namespace std;
+#define vN 10001*2
+#define vE 100001*2
+#define inf 0x3fffffff
+string s[30][3];
+int adj[20][20];
+int cnt;
+int n;
+int used[20];
+int judge(int x,int y)
+{
+    for(int i=0;i&lt;3;i++)
+    for(int j=0;j&lt;3;j++)
+    {
+        if(s[x][i]==s[y][j])
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+int dfs(int x,int lev,int used[])
+{
+    int flag=0;
+    int iused[20];
+    for(int i=0;i&lt;n;i++){
+        iused[i]=used[i];
+        if(adj[x][i])iused[i]=1;
+    }
+    iused[x]=1;
+    for(int i=0;i&lt;n;i++)
+    {
+
+        if(iused[i])continue;
+        iused[i]=1;//x之前的节点都要标记为1不在搜索之前的节点
+        dfs(i,lev+1,iused);
+        flag=1;
+    }
+    if(flag==0)
+    {
+        if(cnt&lt;lev)cnt=lev;
+    }
+    return 0;
+}
+int main()
+{
+    //freopen("data.in", "r", stdin);
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt;n; i++)
+    {
+        cin&gt;&gt;s[i][0];
+        cin&gt;&gt;s[i][1];
+        cin&gt;&gt;s[i][2];
+    }
+    memset(adj,0,sizeof(adj));
+    for(int i=0;i&lt;n;i++)
+    {
+        for(int j=i+1;j&lt;n;j++)
+        {
+            if(judge(i,j))
+            {
+                adj[i][j]=1;
+                adj[j][i]=1;
+                //cout&lt;&lt;i&lt;&lt;j&lt;&lt;endl;
+            }
+        }
+    }
+    cnt=0;
+    for(int i=0;i&lt;n;i++)
+    {
+        memset(used,0,sizeof(used));
+        used[i]=1;
+        dfs(i,1,used);
+    }
+
+    cout&lt;&lt;cnt&lt;&lt;endl;
+
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/* 题意:给出n支acm队伍的名单，这名单中有的队员会重复出现在不同的队伍中。问
+ * 能从中挑选出最多少支不出现重复队员的队伍。
+ * 解法：求最大独立子集。NP完全的。数据小。暴力搜索。注意一个剪]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1930]]></title>
+    <link href="http://yoursite.com/2013/09/06/ural-1930/"/>
+    <id>http://yoursite.com/2013/09/06/ural-1930/</id>
+    <published>2013-09-06T03:13:55.000Z</published>
+    <updated>2015-11-25T04:37:58.633Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/* 题意:给出一个图，有一个起点和终点，现在开车从起点驶向重点，路分为上坡和下坡。
+ * 求一条从起点到终点的路径使得上下坡转换的次数最少。;
+ * 解法：最短路，spfa。把一点拆成以上坡到达和下坡达到两个点。
+ * dist[v][vt]=min(dist[v][vt],dist[u][ut]+(ut!=vt));
+ */
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+using namespace std;
+#define vN 10001*2
+#define vE 100001*2
+#define inf 0x3fffffff
+struct edge
+{
+    int v, next;
+    int c;
+} e[vE];
+int head[vN], used[vN][2], en;
+void addedge(int u, int v, int c)
+{
+    e[en].v = v;
+    e[en].c = c;
+    e[en].next = head[u];
+    head[u] = en++;
+}
+int dist[vN][2];
+int getv(int ut, int vt)
+{
+    if (ut == vt)
+        return 0;
+    return 1;
+}
+int spfa(int s, int t, int n)
+{
+    queue&lt;int&gt; q;
+    memset(used, 0, sizeof(used));
+    for (int i = 0; i &lt;= n; i++)
+    {
+        dist[i][0] = inf;
+        dist[i][1] = inf;
+    }
+    used[s][0] = 1;
+    dist[s][0] = 0;
+    dist[s][1] = 0;
+    used[s][1] = 1;
+    q.push(s);
+    q.push(0);
+    q.push(s);
+    q.push(1);
+    while (!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+        int ut = q.front();
+        q.pop();
+        for (int i = head[u]; i != -1; i = e[i].next)
+        {
+            int v = e[i].v;
+            int vt = e[i].c;
+            if (dist[v][vt] &gt; dist[u][ut] + getv(ut, vt))
+            {
+                dist[v][vt] = dist[u][ut] + getv(ut, vt);
+                if (!used[v][vt])
+                {
+                    q.push(v);
+                    q.push(vt);
+                    used[v][vt] = 1;
+                }
+            }
+
+        }
+    }
+    return min(dist[t][0],dist[t][1]);
+}
+int main()
+{
+    //freopen("data.in", "r", stdin);
+    memset(head, -1, sizeof(head));
+    en = 0;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 0; i &lt; m; i++)
+    {
+        int x, y;
+        cin &gt;&gt; x &gt;&gt; y;
+        addedge(x, y, 0);
+        addedge(y, x, 1);
+    }
+    int s, t;
+    cin &gt;&gt; s &gt;&gt; t;
+    cout &lt;&lt; spfa(s, t, n) &lt;&lt; endl;
+
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/* 题意:给出一个图，有一个起点和终点，现在开车从起点驶向重点，路分为上坡和下坡。
+ * 求一条从起点到终点的路径使得上下坡转换的次数最少。;
+ * 解法：最短路，spfa。把一点拆成以上坡到达和下坡]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1210]]></title>
+    <link href="http://yoursite.com/2013/09/05/ural-1210/"/>
+    <id>http://yoursite.com/2013/09/05/ural-1210/</id>
+    <published>2013-09-05T03:12:33.000Z</published>
+    <updated>2015-11-25T04:37:58.648Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/* 题意：给出一颗二叉树的中序遍历和后序遍历，求出其右左中的遍历
+ * 解法：一边根据已知的两种序列进行树的dfs同时打印出要求遍历的序列。
+ */
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+#include &lt;stack&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+#define vN 30003
+int base[2][3005];
+stack&lt;int&gt; T;
+int n;
+int dfs(int root, int pos, int s, int e)
+{
+    if (T.size() == 0)
+    {
+        cout &lt;&lt; root &lt;&lt; " ";
+        return 0;
+    }
+    int u = T.top();
+    for (int i = pos + 1; i &lt;= e; i++)
+    {
+        if (base[1][i] == u)
+        {
+            T.pop();
+            dfs(u, i, pos + 1, e);
+        }
+    }
+    if (T.size() == 0)
+    {
+        cout &lt;&lt; root &lt;&lt; " ";
+        return 0;
+    }
+    u = T.top();
+    for (int i = s; i &lt; pos; i++)
+    {
+        if (base[1][i] == u)
+        {
+            T.pop();
+            dfs(u, i, s, pos - 1);
+        }
+    }
+    cout &lt;&lt; root &lt;&lt; " ";
+    return 0;
+}
+int main()
+{
+    //freopen("data.in", "r", stdin);
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i++)
+    {
+        cin &gt;&gt; base[0][i];
+        T.push(base[0][i]);
+        base[1][i] = base[0][i];
+    }
+    sort(base[1], base[1] + n);
+    int u = T.top();
+    T.pop();
+    int pos;
+    for (int i = 0; i &lt; n; i++)
+    {
+        if (base[1][i] == u)
+            pos = i;
+    }
+    dfs(u, pos, 0, n - 1);
+    return 0;
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/* 题意：给出一颗二叉树的中序遍历和后序遍历，求出其右左中的遍历
+ * 解法：一边根据已知的两种序列进行树的dfs同时打印出要求遍历的序列。
+ */
+#include &lt;iostream&gt;]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1277]]></title>
+    <link href="http://yoursite.com/2013/09/04/ural-1277/"/>
+    <id>http://yoursite.com/2013/09/04/ural-1277/</id>
+    <published>2013-09-04T10:14:18.000Z</published>
+    <updated>2015-11-25T04:37:58.633Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
+ * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
+ * 解法：把n个城市拆成两个点建立边容量为Ki,其他边容量inf。看s到f的最大流是否小与k
+ */
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+#include &lt;cstdio&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;math.h&gt;
+#include &lt;ctime&gt;
+
+#include &lt;list&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#include&lt;time.h&gt;
+using namespace std;
+#define N 250
+#define E 105*105*16
+
+#define typec int                   // type of cost
+const typec inf = 0x3f3f3f3f; // max of cost
+struct edge
+{
+        int x, y, nxt;
+        typec c;
+} bf[E];
+int ne, head[N], cur[N], ps[N], dep[N];
+void addedge(int x, int y, typec c)
+{ // add an arc(x -&gt; y, c);vertex: 0 ~ n-1;
+    bf[ne].x = x;
+    bf[ne].y = y;
+    bf[ne].c = c;
+    bf[ne].nxt = head[x];
+    head[x] = ne++;
+    bf[ne].x = y;
+    bf[ne].y = x;
+    bf[ne].c = 0;
+    bf[ne].nxt = head[y];
+    head[y] = ne++;
+}
+typec flow(int n, int s, int t)
+{
+    typec tr, res = 0;
+    int i, j, k, f, r, top;
+    while (1)
+    {
+        memset(dep, -1, n * sizeof(int));
+        for (f = dep[ps[0] = s] = 0, r = 1; f != r;)
+            for (i = ps[f++], j = head[i]; j; j = bf[j].nxt)
+            {
+                if (bf[j].c &amp;&amp; -1 == dep[k = bf[j].y])
+                {
+                    dep[k] = dep[i] + 1;
+                    ps[r++] = k;
+                    if (k == t)
+                    {
+                        f = r;
+                        break;
+                    }
+                }
+            }
+        if (-1 == dep[t])
+            break;
+        memcpy(cur, head, n * sizeof(int));
+        for (i = s, top = 0;;)
+        {
+            if (i == t)
+            {
+                for (k = 0, tr = inf; k &lt; top; ++k)
+                    if (bf[ps[k]].c &lt; tr)
+                        tr = bf[ps[f = k]].c;
+                for (k = 0; k &lt; top; ++k)
+                    bf[ps[k]].c -= tr, bf[ps[k] ^ 1].c += tr;
+                res += tr;
+                i = bf[ps[top = f]].x;
+            }
+            for (j = cur[i]; cur[i]; j = cur[i] = bf[cur[i]].nxt)
+                if (bf[j].c &amp;&amp; dep[i] + 1 == dep[bf[j].y])
+                    break;
+            if (cur[i])
+            {
+                ps[top++] = cur[i];
+                i = bf[cur[i]].y;
+            }
+            else
+            {
+                if (0 == top)
+                    break;
+                dep[i] = -1;
+                i = bf[ps[--top]].x;
+            }
+        }
+    }
+    return res;
+}
+int base[N];
+int main()
+{
+    //freopen("data.in", "r", stdin);
+    int k, n,m,s, f;
+    ne = 2;
+    memset(head, 0, sizeof(head));
+    cin &gt;&gt; k;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; f;
+
+    for (int i = 1; i &lt;= n; i++)
+    {
+        cin &gt;&gt; base[i];
+        if(i==s||i==f)base[i]=inf;
+        addedge(2 * i - 1, 2 * i, base[i]);
+
+    }
+    for (int i = 0; i &lt; m; i++)
+    {
+        int x, y;
+        cin &gt;&gt; x &gt;&gt; y;
+        addedge(2 * x, 2 * y - 1, inf);
+        addedge(2 * y, 2 * x - 1, inf);
+    }
+    n = 2 * n;
+    int res=flow(n+1,2 * s - 1, 2 * f);
+    if(res&gt;k)cout&lt;&lt;"NO"&lt;&lt;endl;
+    else cout&lt;&lt;"YES"&lt;&lt;endl;
+
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
+ * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
+ * 解法：把n个城市拆成两个点建立边]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1040]]></title>
+    <link href="http://yoursite.com/2013/09/04/ural-1040/"/>
+    <id>http://yoursite.com/2013/09/04/ural-1040/</id>
+    <published>2013-09-04T10:08:55.000Z</published>
+    <updated>2015-11-25T04:37:58.648Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*題意：一個圖有mt條邊，給他們從1到m編號，要求有公共節點的邊的gcd爲1.問是否可以行，給出一種方案。
+ * 解法：假設一個點鄰接a跳邊。則a條邊中有兩條互質即可。所以我們dfs一邊對於一個點入邊與出邊編號i與i+1
+ * 則該店其他邊任意編號滿足。故按照dfs順序遍歷一遍給邊編號即可。
+ */
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;deque&gt;
+#include&lt;stdio.h&gt;
+#include&lt;cstring&gt;
+using namespace std;
+#define vN 55
+#define vE 5005
+struct edge
+{
+        int v,next;
+}e[vE];
+int used[vN],en=0,head[vN];
+void addedge(int u,int v)
+{
+    e[en].v=v;
+    e[en].next=head[u];
+    head[u]=en++;
+    e[en].v=u;
+    e[en].next=head[v];
+    head[v]=en++;
+}
+int color[vE];
+int cnt=1;
+void dfs(int x)
+{
+    used[x]=1;
+    for(int i=head[x];i!=-1;i=e[i].next)
+    {
+        int v=e[i].v;
+        if(!color[i])
+        {
+            color[i]=cnt;
+            color[i^1]=cnt++;
+            //cout&lt;&lt;i&lt;&lt;endl;
+            dfs(v);
+        }
+    }
+}
+int main()
+{
+    int n,m;
+    cin&gt;&gt;n&gt;&gt;m;
+    memset(head,-1,sizeof(head));
+    memset(color,0,sizeof(color));
+    en=0;
+    for(int i=0;i&lt;m;i++)
+    {
+        int x,y;
+        cin&gt;&gt;x&gt;&gt;y;
+        addedge(x,y);
+    }
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(!used[i])
+        dfs(i);
+    }
+    cout&lt;&lt;"YES"&lt;&lt;endl;
+    for(int i=0;i&lt;m;i++)
+    {
+        cout&lt;&lt;color[2*i]&lt;&lt;" ";
+    }
+    cout&lt;&lt;endl;
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*題意：一個圖有mt條邊，給他們從1到m編號，要求有公共節點的邊的gcd爲1.問是否可以行，給出一種方案。
+ * 解法：假設一個點鄰接a跳邊。則a條邊中有兩條互質即可。所以我們dfs一邊對於一個點入邊]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ural 1106]]></title>
+    <link href="http://yoursite.com/2013/09/04/ural-1106/"/>
+    <id>http://yoursite.com/2013/09/04/ural-1106/</id>
+    <published>2013-09-04T01:50:24.000Z</published>
+    <updated>2015-11-25T04:54:58.783Z</updated>
+    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：把一个图中的点分为两组，保证每个组的任意节点在另外一组一定有一个与之相邻的节点。
+ * 解法：bfs一遍黑白染色。图可能不联通。只有一个节点的则不能成功分组。
+ */
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+#include &lt;cstdio&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;math.h&gt;
+#include &lt;ctime&gt;
+#include &lt;list&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#include&lt;time.h&gt;
+using namespace std;
+#define LL long long
+#define vN 105
+int adj[vN][vN];
+int used[vN],n;
+int color[vN];
+int bfs(int x)
+{
+    int cnt=0;
+    queue&lt;int&gt; q;
+    q.push(x);
+    used[x]=1;
+    color[x]=0;
+    while(!q.empty())
+    {
+        int u=q.front()
+                ;
+        q.pop();
+        cnt++;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(!used[i]&amp;&amp;adj[u][i])
+            {
+                q.push(i);
+                color[i]=1-color[u];
+                used[i]=1;
+            }
+        }
+    }
+    return cnt;
+}
+
+int main()
+{
+    //freopen("data.in","r",stdin);
+    memset(used,0,sizeof(used));
+    memset(adj,0,sizeof(adj));
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++)
+    {
+        int x;
+        while(cin&gt;&gt;x&amp;&amp;x)
+        {
+            adj[i][x]=1;
+            adj[x][i]=1;
+        }
+    }
+    int ans=-1;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(!used[i])
+        {
+            int flag=bfs(i);
+            if(flag==1)
+            {
+                ans=0;
+            }
+        }
+    }
+    if(ans==0)cout&lt;&lt;ans&lt;&lt;endl;
+    else
+    {
+        int cnt=0;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(color[i])cnt++;
+        }
+        cout&lt;&lt;cnt&lt;&lt;endl;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(color[i])
+            {
+                cout&lt;&lt;i&lt;&lt;" ";
+            }
+        }
+        cout&lt;&lt;endl;
+    }
+
+}</pre>]]></content>
+    <summary type="html">
+    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：把一个图中的点分为两组，保证每个组的任意节点在另外一组一定有一个与之相邻的节点。
+ * 解法：bfs一遍黑白染色。图可能不联通。只有一个节点的则不能成功分组。
+ */
+#include &lt]]>
     </summary>
     
   </entry>
