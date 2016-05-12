@@ -8,7 +8,7 @@ rss: /atom.xml
 # Content
 excerpt_link: Read More
 fancybox: true
-mathjax: false
+mathjax: ture
 
 # Sidebar
 sidebar: right

@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-11-23T05:50:20.088Z</updated>
+  <updated>2016-05-12T11:25:23.569Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,233 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[c++基础：零散知识点总结]]></title>
+    <link href="http://yoursite.com/2016/05/12/c++%E5%9F%BA%E7%A1%80-%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/05/12/c++基础-零散知识点总结/</id>
+    <published>2016-05-12T11:21:33.000Z</published>
+    <updated>2016-05-12T11:25:23.569Z</updated>
+    <content type="html"><![CDATA[<h1 id="c++基础：零散知识点总结">c++基础：零散知识点总结</h1><p>[TOC]</p>
+<h2 id="内联函数">内联函数</h2><h3 id="内联函数定义">内联函数定义</h3><h3 id="内联函数使用">内联函数使用</h3><h3 id="内联函数的原理">内联函数的原理</h3><h2 id="深拷贝">深拷贝</h2><h3 id="什么是深拷贝">什么是深拷贝</h3><h3 id="什么时候需要深拷贝">什么时候需要深拷贝</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="c++基础：零散知识点总结">c++基础：零散知识点总结</h1><p>[TOC]</p>
+<h2 id="内联函数">内联函数</h2><h3 id="内联函数定义">内联函数定义</h3><h3 id="内联函数使用">内联函数使用</h3><h3 id="内]]>
+    </summary>
+    
+      <category term="c" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="编程语言" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++基础-类与继承]]></title>
+    <link href="http://yoursite.com/2016/04/26/c++%E5%9F%BA%E7%A1%80-%E7%B1%BB%E4%B8%8E%E7%BB%A7%E6%89%BF/"/>
+    <id>http://yoursite.com/2016/04/26/c++基础-类与继承/</id>
+    <published>2016-04-26T02:12:46.000Z</published>
+    <updated>2016-05-12T11:24:06.513Z</updated>
+    <content type="html"><![CDATA[<h1 id="c++基础-类与继承">c++基础-类与继承</h1><h2 id="c++的类">c++的类</h2><h3 id="构造函数">构造函数</h3><p>类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做构造函数。</p>
+<h4 id="默认构造函数">默认构造函数</h4><p>当类内没有声明任何构造函数的时候，编译器会自动的生成默认构造函数。这个默认构造函数被称为合成的默认构造函数。<br>合成的默认构造函数按照如下规则初始化类的数据成员：</p>
+<ol>
+<li><p>如果存在类内的初始值，用它来初始化成员。如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> example&#123;</span><br><span class="line">  <span class="keyword">int</span> one=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> two=<span class="number">2</span>;</span><br><span class="line">  <span class="comment">//默认构造函数将为one与two分别赋值为1和2.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不存在类内初始值，默认初始化该成员。默认初始化的默认值根据变量的类型决定。对于内置类型而言，它的默认值由定义位置决定。定义与任何函数体之外的变量初始化为0。定义在函数体内部的内置类型将不被初始化。一个未被初始化的内置类型变量的值是未定义的。</p>
+</li>
+</ol>
+<p><strong>注意</strong> <strong><em>如果一个类中包含一个其他类型的成员，而该成员没有默认构造函数，则编译器无法初始化该成员，也无法为该类合成默认的构造函数</em></strong></p>
+<h4 id="构造函数初始值列表">构造函数初始值列表</h4><ul>
+<li>构造函数初始值列表的使用方式如下：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> example&#123;</span><br><span class="line">  <span class="keyword">int</span> one;</span><br><span class="line">  <span class="keyword">int</span> two;</span><br><span class="line">  <span class="keyword">int</span> three=<span class="number">3</span>;</span><br><span class="line">  example():one(<span class="number">1</span>),two(<span class="number">2</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>如果某个数据成员在构造函数初始值列表中被忽略，则他以和合成默认构造函数相同的方式隐式的初始化。</li>
+<li>构造函数初始值列表的初始化顺序与该成员在类中的声明顺序一致。</li>
+<li>最好令构造函数初始值与成员声明顺序一致，而且如果可能的话，。尽量避免使用某些成员初始化其他成员</li>
+<li>如果一个构造函数为所有参数都提供了默认实参。则他实际上也定义了默认构造参数。</li>
+</ol>
+<h4 id="拷贝与赋值">拷贝与赋值</h4><p>如果没有定义拷贝与赋值的操作。编译器将为自动合成默认的版本。但是某些类不能依赖于合成的版本。尤其是在类需要分配类对象之外的资源时。</p>
+<h4 id="析构函数">析构函数</h4><p>###类的静态成员</p>
+<h2 id="类的继承与派生">类的继承与派生</h2><p>类派生的形式如下：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deriver</span>:<span class="typename">public baseA</span>,<span class="typename">public baseB&#123;</span></span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="构造函数初始化顺序">构造函数初始化顺序</h3><p>首先初始化基类的部分，然后按照声明的顺序依次初始化派生类的成员。除非特别指出，派生类对象的基类部分会像数据成员一样执行默认初始化。</p>
+<h3 id="虚函数">虚函数</h3><p>在c++中，当我们使用基类的引用（或指针）调用一个虚函数时将发生动态绑定。对于虚函数简而言之，如果被设定为虚函数了，则通过父类的函数调用虚函数执行的都是子类中覆盖的虚函数。如果没有设为虚函数。则操作的还是父类中定义的函数。</p>
+<h4 id="虚函数的实现原理">虚函数的实现原理</h4><h3 id="多态">多态</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="c++基础-类与继承">c++基础-类与继承</h1><h2 id="c++的类">c++的类</h2><h3 id="构造函数">构造函数</h3><p>类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做构造函数。</p>
+<h4 id="默认]]>
+    </summary>
+    
+      <category term="c" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="编程语言" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[coding技巧集锦]]></title>
+    <link href="http://yoursite.com/2016/04/25/coding%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2016/04/25/coding技巧总结/</id>
+    <published>2016-04-25T04:50:05.000Z</published>
+    <updated>2016-04-25T05:32:44.332Z</updated>
+    <content type="html"><![CDATA[<h2 id="调用堆栈">调用堆栈</h2><p>调用堆栈最经常被用于存放子程序的返回地址。在调用任何子程序时，主程序都必须暂存子程序运行完毕后应该返回到的地址。因此，如果被调用的子程序还要调用其他的子程序，其自身的返回地址就必须存入调用堆栈，在其自身运行完毕后再行取回。在递归程序中，每一层次递归都必须在调用堆栈上增加一条地址，因此如果程序出现无限递归（或仅仅是过多的递归层次），调用堆栈就会产生堆栈溢出。<br>调用堆栈的主要功能是存放返回地址。除此之外，调用堆栈还用于存放：<br>本地变量：子程序的变量可以存入调用堆栈，这样可以达到不同子程序间变量分离开的作用。<br>参数传递：如果寄存器不足以容纳子程序的参数，可以在调用堆栈上存入参数。<br>环境传递：有些语言（如Pascal与Ada）支持“多层子程序”，即子程序中可以利用主程序的本地变量。这些变量可以通过调用堆栈传入子程序。</p>
+<h2 id="堆与栈">堆与栈</h2><h3 id="C/C++的堆栈">C/C++的堆栈</h3><p>一个由C/C++编译的程序占用的内存分为以下几个部分：</p>
+<ol>
+<li>栈区（stack）— 由编译器自动分配释放 ，存放函数的参数名，局部变量的名等。其操作方式类似于数据结构中的栈。</li>
+<li>堆区（heap）— 由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。</li>
+<li>静态区（static）—全局变量和局部静态变量的存储是放在一块的。程序结束后由系统释放。</li>
+<li>文字常量区—常量字符串就是放在这里的，程序结束后由系统释放 。</li>
+<li>程序代码区— 存放函数体的二进制代码。</li>
+</ol>
+<h3 id="java中的堆栈">java中的堆栈</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="调用堆栈">调用堆栈</h2><p>调用堆栈最经常被用于存放子程序的返回地址。在调用任何子程序时，主程序都必须暂存子程序运行完毕后应该返回到的地址。因此，如果被调用的子程序还要调用其他的子程序，其自身的返回地址就必须存入调用堆栈，在其自身运行完毕后再行取回。在递归]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[手写程序集锦]]></title>
+    <link href="http://yoursite.com/2016/04/25/%E6%89%8B%E5%86%99%E7%A8%8B%E5%BA%8F%E9%9B%86%E9%94%A6/"/>
+    <id>http://yoursite.com/2016/04/25/手写程序集锦/</id>
+    <published>2016-04-25T04:48:37.000Z</published>
+    <updated>2016-04-25T04:48:37.998Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[操作系统基础-进程]]></title>
+    <link href="http://yoursite.com/2016/04/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80-%E8%BF%9B%E7%A8%8B/"/>
+    <id>http://yoursite.com/2016/04/25/操作系统基础-进程/</id>
+    <published>2016-04-25T02:38:44.000Z</published>
+    <updated>2016-04-25T05:10:43.127Z</updated>
+    <content type="html"><![CDATA[<h1 id="进程">进程</h1><p>[TOC]</p>
+<h2 id="进程的定义">进程的定义</h2><h2 id="进程的调配">进程的调配</h2><h3 id="什么是进程">什么是进程</h3><h3 id="进程与线程的区别">进程与线程的区别</h3><h2 id="进程间的通信">进程间的通信</h2><h3 id="信号量">信号量</h3><h3 id="共享内存">共享内存</h3><h3 id="消息队列">消息队列</h3><h3 id="信号">信号</h3><h3 id="管道">管道</h3><h3 id="套接字">套接字</h3>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="进程">进程</h1><p>[TOC]</p>
+<h2 id="进程的定义">进程的定义</h2><h2 id="进程的调配">进程的调配</h2><h3 id="什么是进程">什么是进程</h3><h3 id="进程与线程的区别">进程与线程的区别</h3><h]]>
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+      <category term="进程" scheme="http://yoursite.com/tags/%E8%BF%9B%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++基础：关键字与限定符]]></title>
+    <link href="http://yoursite.com/2016/04/23/c++%E5%9F%BA%E7%A1%80-%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E9%99%90%E5%AE%9A%E7%AC%A6/"/>
+    <id>http://yoursite.com/2016/04/23/c++基础-关键字与限定符/</id>
+    <published>2016-04-23T10:24:33.000Z</published>
+    <updated>2016-05-09T04:57:02.232Z</updated>
+    <content type="html"><![CDATA[<h1 id="c++基础：关键字与限定符">c++基础：关键字与限定符</h1><p>[TOC]</p>
+<h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
+<h3 id="const修饰对象">const修饰对象</h3><blockquote>
+<ul>
+<li>const对象必须被初始化，初始值可以使任意复杂的表达式</li>
+<li>const对象只能执行不改变其值得操作</li>
+<li>const对象被设定为仅在文件内有效</li>
+<li>const对象以及常量对象的引用或者指针只能调用常量成员函数</li>
+</ul>
+</blockquote>
+<h3 id="const修饰类成员函数">const修饰类成员函数</h3><p>const修饰类成员函数相当于把修改隐式this指针的类型，this指针默认情况下是一个指向非常量对象的常量指针。const修饰成员函数之后，this指针的类型被改变为指向常量对象的常量指针。所以const修饰函数无法改变类的成员。</p>
+<blockquote>
+<ul>
+<li>const修饰类成员函数时，表面该函数不能修改类成员，否则编译器会报错</li>
+</ul>
+</blockquote>
+<h3 id="const修饰引用与指针">const修饰引用与指针</h3><p>详见</p>
+<h3 id="const与函数重载">const与函数重载</h3><blockquote>
+<ul>
+<li>在函数重载中，顶层const（自身是常量的对象：常量对象或者本身是常量的指针）的形参无法与非顶层const的形参区分开来。</li>
+<li>在函数重载重，底层 const（常量引用以及指向常量的指针）可以与非常量对象区别从而实现重载</li>
+</ul>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="c++基础：关键字与限定符">c++基础：关键字与限定符</h1><p>[TOC]</p>
+<h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
+<h3 id="const修饰对象">con]]>
+    </summary>
+    
+      <category term="c" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="编程语言" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++基础：指针与引用]]></title>
+    <link href="http://yoursite.com/2016/04/23/c++%E5%9F%BA%E7%A1%80-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/04/23/c++基础-指针与引用/</id>
+    <published>2016-04-23T07:38:36.000Z</published>
+    <updated>2016-05-12T11:19:25.349Z</updated>
+    <content type="html"><![CDATA[<h1 id="c++基础：指针与引用">c++基础：指针与引用</h1><p>[TOC]</p>
+<h2 id="引用">引用</h2><h3 id="引用基础">引用基础</h3><p>普通的引用通常是指左值引用。引用（reference）为对象起了另一个名字，引用类型引用另一种类型。引用类型并非对象，相反的，它只是为一个已经存在的对象所起的另一个名字。定义引用时，程序把引用和他的初始值绑定（bind）在一起。引用是必须会被初始化的，而且不能再将引用绑定在另一个对象上。</p>
+<blockquote>
+<ol>
+<li><strong> 引用并非对象，所以不能定义引用的引用。</strong></li>
+<li><strong> 非常量引用只能绑定在对象上，而不能绑定字面指或者表达式结果。</strong></li>
+<li><strong>不要返回局部对象的引用或者指针，因为函数完成后他所占用的存储空间也会随之释放，因为局部变量的引用将指向不再有效的内存区域</strong></li>
+</ol>
+</blockquote>
+<h3 id="常量引用">常量引用</h3><p>常量引用是对const的引用。对常量的引用不能被用作修改它所绑定的对象。</p>
+<blockquote>
+<ol>
+<li>非常量引用不能引用一个常量对象</li>
+<li>常量引用可以引用常量对象也可以引用普通对象</li>
+<li><strong>常量引用可以绑定字面指或者表达式结（因为这些值也是常量）</strong><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下合法</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; refExpression=<span class="number">10</span>*<span class="number">5.012</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h3 id="右值引用">右值引用</h3><p>函数的返回类型决定函数调用是否为左值，调用一个返回引用的函数得到左值，其他类型得到右值。例如可以这样<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> &amp;<span class="title">getVal</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">getVal()=<span class="string">'F'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>等待更新</p>
+<h2 id="指针">指针</h2><h3 id="指针基础">指针基础</h3><p>指针是用来存储地址的变量。他是指向另一种类型的复合类型。<strong> 指针本身就是一个对象，允许对指针赋值和拷贝。在其声明周期内可以指向不同的对象</strong>。指针无需再定义时赋值，没有被初始化的指针拥有一个不确定的值。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明指针的两种形式</span></span><br><span class="line"><span class="keyword">int</span> *p,*q;</span><br><span class="line"><span class="keyword">int</span>* p;</span><br><span class="line"><span class="keyword">int</span>* q;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><strong> 初始化所有的指针，未初始化的指针可能会引起程序运行时错误 。</strong></li>
+<li><strong> void<em>指针可以存放任意对象的指针但是无法访问其指向的内存空间的内容 。使用static_cast 可以将void</em> 转换成原有的类型指针，如果类型不符合将产生未定义的后果</strong></li>
+</ol>
+</blockquote>
+<h3 id="指针常量">指针常量</h3><p>指针常量是指向常量的指针。不能用于改变其所值得对象的值。常量对象只能用指针常量来指向。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;a;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><strong> 指针常量允许指向一个非常量对象。</strong></li>
+<li><strong> 指针常量的指向是可以更改的，可以指向其他帝乡。</strong></li>
+</ol>
+</blockquote>
+<h3 id="常量指针">常量指针</h3><p>指针本身是一个对象，如果指针被声明为常量指针，该指针本身是一个常量，一旦指定一个对象不能再做更改。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p=&amp;a;<span class="comment">//p不能再指向其他对象，可以通过p改变a</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> b2=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> q=&amp;b2;<span class="comment">//q本身是指向一个常量的常量指针。不能通过q改变对象，q的指向也不能改变。</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="函数指针">函数指针</h3><h2 id="指针与引用的对比">指针与引用的对比</h2><h3 id="顶层const与底层const">顶层const与底层const</h3><p>顶层const 表示指针本身是常量<br>底层const 表示指针所指的对象是常量</p>
+<h3 id="指针与引用的优劣">指针与引用的优劣</h3><ul>
+<li><em>指针可以为空或者未初始化的状态而引用必须初始化，从这个角度来讲指针比引用更危险。</em></li>
+<li><em>通过指针new出来的空间必须delete才能释放掉。可能会造成内存泄漏</em></li>
+<li><em>通过引用来传递参数,可以减少对象的复制，增强效率</em></li>
+</ul>
+<h3 id="指针和引用作为函数参数分别适用于什么情况">指针和引用作为函数参数分别适用于什么情况</h3><h3 id="指向指针的引用">指向指针的引用</h3><p>指针的引用，相当于一个指针。保持和原来指针一样的属性。然后似乎并没有指向引用的指针。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> str=<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> dataA=<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* dataPrtA=&amp;dataA;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> dataB=<span class="number">20</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* dataPrtB=&amp;dataB;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* &amp;dataRef=dataPrtA;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*dataRef&lt;&lt;endl;</span><br><span class="line">	dataRef=dataPrtB;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*dataRef&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="c++基础：指针与引用">c++基础：指针与引用</h1><p>[TOC]</p>
+<h2 id="引用">引用</h2><h3 id="引用基础">引用基础</h3><p>普通的引用通常是指左值引用。引用（reference）为对象起了另一个名字，引用类型引用另]]>
+    </summary>
+    
+      <category term="c" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="编程语言" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hello World]]></title>
@@ -41,7 +268,7 @@
     <link href="http://yoursite.com/2014/06/11/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2014/06/11/二分搜索总结/</id>
     <published>2014-06-11T08:38:51.000Z</published>
-    <updated>2015-11-25T04:37:58.648Z</updated>
+    <updated>2016-04-26T04:40:10.427Z</updated>
     <content type="html"><![CDATA[<p><strong>若 p(x)成立，对于所有的y&gt;x, p(y)都成立。当然，若p(x) 不成立，所有y &lt; x, p(y)都不成立。</strong></p>
 <h5 id="使得p（x）成立的第一个满足条件的位置">使得p（x）成立的第一个满足条件的位置</h5><pre config="brush:cpp;toolbar:false;">
 int binary_search(int a[], int low, int high)
@@ -54,10 +281,10 @@ int binary_search(int a[], int low, int high)
             high = mid;
         else
             low = mid + 1;
-        if (p(low) == false)
-            return -1;
         return low;
     }
+    if (p(low) == false)
+    return -1;
 }
 </pre>
 
@@ -72,10 +299,10 @@ int binary_search(int a[], int low, int high)
             low = mid;
         else
             hight= mid - 1;
-        if (p(low) == false)
-            return -1;
         return low;
     }
+    if (p(low) == false)
+    return -1;
 }
 </pre>
 
@@ -259,7 +486,7 @@ int main()
     <link href="http://yoursite.com/2013/09/10/ural-1016/"/>
     <id>http://yoursite.com/2013/09/10/ural-1016/</id>
     <published>2013-09-10T08:05:22.000Z</published>
-    <updated>2015-11-25T04:37:58.633Z</updated>
+    <updated>2016-04-23T11:17:04.680Z</updated>
     <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：给出一个骰子，六个面标记数字。放在国际象棋的棋盘里。
  * 没滚动一次，花费着地的那个面标记数字那么多的费用。
  * 给出一个起点与终点。问最小费用是多少。

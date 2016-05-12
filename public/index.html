@@ -71,6 +71,412 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-c++基础-零散知识点总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/12/c++基础-零散知识点总结/" class="article-date">
+  <time datetime="2016-05-12T11:21:33.000Z" itemprop="datePublished">2016-05-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="c++基础：零散知识点总结">c++基础：零散知识点总结</h1><p>[TOC]</p>
+<h2 id="内联函数">内联函数</h2><h3 id="内联函数定义">内联函数定义</h3><h3 id="内联函数使用">内联函数使用</h3><h3 id="内联函数的原理">内联函数的原理</h3><h2 id="深拷贝">深拷贝</h2><h3 id="什么是深拷贝">什么是深拷贝</h3><h3 id="什么时候需要深拷贝">什么时候需要深拷贝</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/05/12/c++基础-零散知识点总结/" data-id="cio47pdru000qnowyg37o0cyh" class="article-share-link" data-share="baidu" data-title="c++基础：零散知识点总结">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/05/12/c++基础-零散知识点总结/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程语言/">编程语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c++基础-类与继承" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/26/c++基础-类与继承/" class="article-date">
+  <time datetime="2016-04-26T02:12:46.000Z" itemprop="datePublished">2016-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="c++基础-类与继承">c++基础-类与继承</h1><h2 id="c++的类">c++的类</h2><h3 id="构造函数">构造函数</h3><p>类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做构造函数。</p>
+<h4 id="默认构造函数">默认构造函数</h4><p>当类内没有声明任何构造函数的时候，编译器会自动的生成默认构造函数。这个默认构造函数被称为合成的默认构造函数。<br>合成的默认构造函数按照如下规则初始化类的数据成员：</p>
+<ol>
+<li><p>如果存在类内的初始值，用它来初始化成员。如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> example&#123;</span><br><span class="line">  <span class="keyword">int</span> one=<span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> two=<span class="number">2</span>;</span><br><span class="line">  <span class="comment">//默认构造函数将为one与two分别赋值为1和2.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不存在类内初始值，默认初始化该成员。默认初始化的默认值根据变量的类型决定。对于内置类型而言，它的默认值由定义位置决定。定义与任何函数体之外的变量初始化为0。定义在函数体内部的内置类型将不被初始化。一个未被初始化的内置类型变量的值是未定义的。</p>
+</li>
+</ol>
+<p><strong>注意</strong> <strong><em>如果一个类中包含一个其他类型的成员，而该成员没有默认构造函数，则编译器无法初始化该成员，也无法为该类合成默认的构造函数</em></strong></p>
+<h4 id="构造函数初始值列表">构造函数初始值列表</h4><ul>
+<li>构造函数初始值列表的使用方式如下：<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> example&#123;</span><br><span class="line">  <span class="keyword">int</span> one;</span><br><span class="line">  <span class="keyword">int</span> two;</span><br><span class="line">  <span class="keyword">int</span> three=<span class="number">3</span>;</span><br><span class="line">  example():one(<span class="number">1</span>),two(<span class="number">2</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>如果某个数据成员在构造函数初始值列表中被忽略，则他以和合成默认构造函数相同的方式隐式的初始化。</li>
+<li>构造函数初始值列表的初始化顺序与该成员在类中的声明顺序一致。</li>
+<li>最好令构造函数初始值与成员声明顺序一致，而且如果可能的话，。尽量避免使用某些成员初始化其他成员</li>
+<li>如果一个构造函数为所有参数都提供了默认实参。则他实际上也定义了默认构造参数。</li>
+</ol>
+<h4 id="拷贝与赋值">拷贝与赋值</h4><p>如果没有定义拷贝与赋值的操作。编译器将为自动合成默认的版本。但是某些类不能依赖于合成的版本。尤其是在类需要分配类对象之外的资源时。</p>
+<h4 id="析构函数">析构函数</h4><p>###类的静态成员</p>
+<h2 id="类的继承与派生">类的继承与派生</h2><p>类派生的形式如下：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deriver</span>:<span class="typename">public baseA</span>,<span class="typename">public baseB&#123;</span></span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="构造函数初始化顺序">构造函数初始化顺序</h3><p>首先初始化基类的部分，然后按照声明的顺序依次初始化派生类的成员。除非特别指出，派生类对象的基类部分会像数据成员一样执行默认初始化。</p>
+<h3 id="虚函数">虚函数</h3><p>在c++中，当我们使用基类的引用（或指针）调用一个虚函数时将发生动态绑定。对于虚函数简而言之，如果被设定为虚函数了，则通过父类的函数调用虚函数执行的都是子类中覆盖的虚函数。如果没有设为虚函数。则操作的还是父类中定义的函数。</p>
+<h4 id="虚函数的实现原理">虚函数的实现原理</h4><h3 id="多态">多态</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/26/c++基础-类与继承/" data-id="cio47pdru000unowy0gz81wot" class="article-share-link" data-share="baidu" data-title="c++基础-类与继承">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/26/c++基础-类与继承/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程语言/">编程语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-coding技巧总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/25/coding技巧总结/" class="article-date">
+  <time datetime="2016-04-25T04:50:05.000Z" itemprop="datePublished">2016-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/25/coding技巧总结/">coding技巧集锦</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="调用堆栈">调用堆栈</h2><p>调用堆栈最经常被用于存放子程序的返回地址。在调用任何子程序时，主程序都必须暂存子程序运行完毕后应该返回到的地址。因此，如果被调用的子程序还要调用其他的子程序，其自身的返回地址就必须存入调用堆栈，在其自身运行完毕后再行取回。在递归程序中，每一层次递归都必须在调用堆栈上增加一条地址，因此如果程序出现无限递归（或仅仅是过多的递归层次），调用堆栈就会产生堆栈溢出。<br>调用堆栈的主要功能是存放返回地址。除此之外，调用堆栈还用于存放：<br>本地变量：子程序的变量可以存入调用堆栈，这样可以达到不同子程序间变量分离开的作用。<br>参数传递：如果寄存器不足以容纳子程序的参数，可以在调用堆栈上存入参数。<br>环境传递：有些语言（如Pascal与Ada）支持“多层子程序”，即子程序中可以利用主程序的本地变量。这些变量可以通过调用堆栈传入子程序。</p>
+<h2 id="堆与栈">堆与栈</h2><h3 id="C/C++的堆栈">C/C++的堆栈</h3><p>一个由C/C++编译的程序占用的内存分为以下几个部分：</p>
+<ol>
+<li>栈区（stack）— 由编译器自动分配释放 ，存放函数的参数名，局部变量的名等。其操作方式类似于数据结构中的栈。</li>
+<li>堆区（heap）— 由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。</li>
+<li>静态区（static）—全局变量和局部静态变量的存储是放在一块的。程序结束后由系统释放。</li>
+<li>文字常量区—常量字符串就是放在这里的，程序结束后由系统释放 。</li>
+<li>程序代码区— 存放函数体的二进制代码。</li>
+</ol>
+<h3 id="java中的堆栈">java中的堆栈</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/25/coding技巧总结/" data-id="cio47pdru000pnowyg0ati46z" class="article-share-link" data-share="baidu" data-title="coding技巧集锦">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/25/coding技巧总结/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-手写程序集锦" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/25/手写程序集锦/" class="article-date">
+  <time datetime="2016-04-25T04:48:37.000Z" itemprop="datePublished">2016-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/25/手写程序集锦/">手写程序集锦</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/25/手写程序集锦/" data-id="cio47pdqt000cnowy23xrm3iw" class="article-share-link" data-share="baidu" data-title="手写程序集锦">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/25/手写程序集锦/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-操作系统基础-进程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/25/操作系统基础-进程/" class="article-date">
+  <time datetime="2016-04-25T02:38:44.000Z" itemprop="datePublished">2016-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/25/操作系统基础-进程/">操作系统基础-进程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="进程">进程</h1><p>[TOC]</p>
+<h2 id="进程的定义">进程的定义</h2><h2 id="进程的调配">进程的调配</h2><h3 id="什么是进程">什么是进程</h3><h3 id="进程与线程的区别">进程与线程的区别</h3><h2 id="进程间的通信">进程间的通信</h2><h3 id="信号量">信号量</h3><h3 id="共享内存">共享内存</h3><h3 id="消息队列">消息队列</h3><h3 id="信号">信号</h3><h3 id="管道">管道</h3><h3 id="套接字">套接字</h3>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/25/操作系统基础-进程/" data-id="cio47pdqt0007nowydjdmagme" class="article-share-link" data-share="baidu" data-title="操作系统基础-进程">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/25/操作系统基础-进程/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/进程/">进程</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c++基础-关键字与限定符" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/c++基础-关键字与限定符/" class="article-date">
+  <time datetime="2016-04-23T10:24:33.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/c++基础-关键字与限定符/">c++基础：关键字与限定符</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="c++基础：关键字与限定符">c++基础：关键字与限定符</h1><p>[TOC]</p>
+<h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
+<h3 id="const修饰对象">const修饰对象</h3><blockquote>
+<ul>
+<li>const对象必须被初始化，初始值可以使任意复杂的表达式</li>
+<li>const对象只能执行不改变其值得操作</li>
+<li>const对象被设定为仅在文件内有效</li>
+<li>const对象以及常量对象的引用或者指针只能调用常量成员函数</li>
+</ul>
+</blockquote>
+<h3 id="const修饰类成员函数">const修饰类成员函数</h3><p>const修饰类成员函数相当于把修改隐式this指针的类型，this指针默认情况下是一个指向非常量对象的常量指针。const修饰成员函数之后，this指针的类型被改变为指向常量对象的常量指针。所以const修饰函数无法改变类的成员。</p>
+<blockquote>
+<ul>
+<li>const修饰类成员函数时，表面该函数不能修改类成员，否则编译器会报错</li>
+</ul>
+</blockquote>
+<h3 id="const修饰引用与指针">const修饰引用与指针</h3><p>详见</p>
+<h3 id="const与函数重载">const与函数重载</h3><blockquote>
+<ul>
+<li>在函数重载中，顶层const（自身是常量的对象：常量对象或者本身是常量的指针）的形参无法与非顶层const的形参区分开来。</li>
+<li>在函数重载重，底层 const（常量引用以及指向常量的指针）可以与非常量对象区别从而实现重载</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/23/c++基础-关键字与限定符/" data-id="cio47pdqd0000nowym3sa7ptv" class="article-share-link" data-share="baidu" data-title="c++基础：关键字与限定符">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/23/c++基础-关键字与限定符/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程语言/">编程语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-c++基础-指针与引用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/c++基础-指针与引用/" class="article-date">
+  <time datetime="2016-04-23T07:38:36.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/c++基础-指针与引用/">c++基础：指针与引用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="c++基础：指针与引用">c++基础：指针与引用</h1><p>[TOC]</p>
+<h2 id="引用">引用</h2><h3 id="引用基础">引用基础</h3><p>普通的引用通常是指左值引用。引用（reference）为对象起了另一个名字，引用类型引用另一种类型。引用类型并非对象，相反的，它只是为一个已经存在的对象所起的另一个名字。定义引用时，程序把引用和他的初始值绑定（bind）在一起。引用是必须会被初始化的，而且不能再将引用绑定在另一个对象上。</p>
+<blockquote>
+<ol>
+<li><strong> 引用并非对象，所以不能定义引用的引用。</strong></li>
+<li><strong> 非常量引用只能绑定在对象上，而不能绑定字面指或者表达式结果。</strong></li>
+<li><strong>不要返回局部对象的引用或者指针，因为函数完成后他所占用的存储空间也会随之释放，因为局部变量的引用将指向不再有效的内存区域</strong></li>
+</ol>
+</blockquote>
+<h3 id="常量引用">常量引用</h3><p>常量引用是对const的引用。对常量的引用不能被用作修改它所绑定的对象。</p>
+<blockquote>
+<ol>
+<li>非常量引用不能引用一个常量对象</li>
+<li>常量引用可以引用常量对象也可以引用普通对象</li>
+<li><strong>常量引用可以绑定字面指或者表达式结（因为这些值也是常量）</strong><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下合法</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; refExpression=<span class="number">10</span>*<span class="number">5.012</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h3 id="右值引用">右值引用</h3><p>函数的返回类型决定函数调用是否为左值，调用一个返回引用的函数得到左值，其他类型得到右值。例如可以这样<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> &amp;<span class="title">getVal</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">getVal()=<span class="string">'F'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>等待更新</p>
+<h2 id="指针">指针</h2><h3 id="指针基础">指针基础</h3><p>指针是用来存储地址的变量。他是指向另一种类型的复合类型。<strong> 指针本身就是一个对象，允许对指针赋值和拷贝。在其声明周期内可以指向不同的对象</strong>。指针无需再定义时赋值，没有被初始化的指针拥有一个不确定的值。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明指针的两种形式</span></span><br><span class="line"><span class="keyword">int</span> *p,*q;</span><br><span class="line"><span class="keyword">int</span>* p;</span><br><span class="line"><span class="keyword">int</span>* q;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><strong> 初始化所有的指针，未初始化的指针可能会引起程序运行时错误 。</strong></li>
+<li><strong> void<em>指针可以存放任意对象的指针但是无法访问其指向的内存空间的内容 。使用static_cast 可以将void</em> 转换成原有的类型指针，如果类型不符合将产生未定义的后果</strong></li>
+</ol>
+</blockquote>
+<h3 id="指针常量">指针常量</h3><p>指针常量是指向常量的指针。不能用于改变其所值得对象的值。常量对象只能用指针常量来指向。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;a;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><strong> 指针常量允许指向一个非常量对象。</strong></li>
+<li><strong> 指针常量的指向是可以更改的，可以指向其他帝乡。</strong></li>
+</ol>
+</blockquote>
+<h3 id="常量指针">常量指针</h3><p>指针本身是一个对象，如果指针被声明为常量指针，该指针本身是一个常量，一旦指定一个对象不能再做更改。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p=&amp;a;<span class="comment">//p不能再指向其他对象，可以通过p改变a</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> b2=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> q=&amp;b2;<span class="comment">//q本身是指向一个常量的常量指针。不能通过q改变对象，q的指向也不能改变。</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="函数指针">函数指针</h3><h2 id="指针与引用的对比">指针与引用的对比</h2><h3 id="顶层const与底层const">顶层const与底层const</h3><p>顶层const 表示指针本身是常量<br>底层const 表示指针所指的对象是常量</p>
+<h3 id="指针与引用的优劣">指针与引用的优劣</h3><ul>
+<li><em>指针可以为空或者未初始化的状态而引用必须初始化，从这个角度来讲指针比引用更危险。</em></li>
+<li><em>通过指针new出来的空间必须delete才能释放掉。可能会造成内存泄漏</em></li>
+<li><em>通过引用来传递参数,可以减少对象的复制，增强效率</em></li>
+</ul>
+<h3 id="指针和引用作为函数参数分别适用于什么情况">指针和引用作为函数参数分别适用于什么情况</h3><h3 id="指向指针的引用">指向指针的引用</h3><p>指针的引用，相当于一个指针。保持和原来指针一样的属性。然后似乎并没有指向引用的指针。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> str=<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> dataA=<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* dataPrtA=&amp;dataA;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> dataB=<span class="number">20</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* dataPrtB=&amp;dataB;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* &amp;dataRef=dataPrtA;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*dataRef&lt;&lt;endl;</span><br><span class="line">	dataRef=dataPrtB;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*dataRef&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/23/c++基础-指针与引用/" data-id="cio47pdru000ynowyv6c60xew" class="article-share-link" data-share="baidu" data-title="c++基础：指针与引用">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/23/c++基础-指针与引用/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程语言/">编程语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/24/hello-world/" class="article-date">
@@ -107,7 +513,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2015/11/24/hello-world/" data-id="cihelbtvn000bwswyi8xjacbj" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
+        <a data-url="http://yoursite.com/2015/11/24/hello-world/" data-id="cio47pdrs000nnowy6uez1use" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
       
 
       
@@ -156,10 +562,10 @@ int binary_search(int a[], int low, int high)
             high = mid;
         else
             low = mid + 1;
-        if (p(low) == false)
-            return -1;
         return low;
     }
+    if (p(low) == false)
+    return -1;
 }
 </pre>
 
@@ -174,10 +580,10 @@ int binary_search(int a[], int low, int high)
             low = mid;
         else
             hight= mid - 1;
-        if (p(low) == false)
-            return -1;
         return low;
     }
+    if (p(low) == false)
+    return -1;
 }
 </pre>
 
@@ -269,7 +675,7 @@ int bs(int a[], int l, int h, int v)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2014/06/11/二分搜索总结/" data-id="cihelbtv70001wswyxdcvf8ox" class="article-share-link" data-share="baidu" data-title="二分搜索总结">分享到</a>
+        <a data-url="http://yoursite.com/2014/06/11/二分搜索总结/" data-id="cio47pdqt000dnowydq2wnzdi" class="article-share-link" data-share="baidu" data-title="二分搜索总结">分享到</a>
       
 
       
@@ -380,1086 +786,11 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/10/11/ural-1613/" data-id="cihelbtvn0003wswysm5oehji" class="article-share-link" data-share="baidu" data-title="ural 1613">分享到</a>
+        <a data-url="http://yoursite.com/2013/10/11/ural-1613/" data-id="cio47pdr8000fnowy74myccyu" class="article-share-link" data-share="baidu" data-title="ural 1613">分享到</a>
       
 
       
         <a href="http://yoursite.com/2013/10/11/ural-1613/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1016" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/10/ural-1016/" class="article-date">
-  <time datetime="2013-09-10T08:05:22.000Z" itemprop="datePublished">2013-09-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/10/ural-1016/">ural 1016</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*题意：给出一个骰子，六个面标记数字。放在国际象棋的棋盘里。
- * 没滚动一次，花费着地的那个面标记数字那么多的费用。
- * 给出一个起点与终点。问最小费用是多少。
- * 解法：对于每个点骰子的状态有24种，所以把每个点拆成24种状态。
- * 这样就变成了一个最短路问题。在实现过程中，用map把6个面对应的
- * 数字序列映射成24种状态。两个点之间可转移的状态认为有一条边。
- * 
- */
-#include &lt;functional&gt;
-#include &lt;algorithm&gt;
-#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-#include &lt;numeric&gt;
-#include &lt;cstring&gt;
-#include &lt;cassert&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-#include &lt;math.h&gt;
-#include &lt;ctime&gt;
-#include &lt;list&gt;
-#include &lt;set&gt;
-#include &lt;map&gt;
-#include&lt;time.h&gt;
-using namespace std;
-#define LL long long
-#define inf 0x3fffffff
-map&lt;LL, int&gt; mm;
-int dist[8][8][24];
-bool used[8][8][24];
-int path[8][8][24][3];
-int dir[4][2] =
-{
-{ 0, 1 },
-{ 0, -1 },
-{ -1, 0 },
-{ 1, 0 } };
-int hash = 0;
-struct data
-{
-        int pane[6];
-        LL gethash()
-        {
-            LL ans = 0;
-            for (int i = 0; i &lt; 6; i++)
-            {
-                ans = ans * 1000 + pane[i];
-            }
-            return ans;
-        }
-
-};
-int roll(int dir, data &amp;a, data b)
-{
-    if (dir == 0)
-    {
-        a.pane[2] = b.pane[3];
-        a.pane[3] = b.pane[4];
-        a.pane[4] = b.pane[5];
-        a.pane[5] = b.pane[2];
-    }
-    if (dir == 1)
-    {
-        a.pane[2] = b.pane[5];
-        a.pane[3] = b.pane[2];
-        a.pane[4] = b.pane[3];
-        a.pane[5] = b.pane[4];
-    }
-    if (dir == 2)
-    {
-        a.pane[0] = b.pane[4];
-        a.pane[1] = b.pane[2];
-        a.pane[2] = b.pane[0];
-        a.pane[4] = b.pane[1];
-    }
-    if (dir == 3)
-    {
-        a.pane[0] = b.pane[2];
-        a.pane[1] = b.pane[4];
-        a.pane[2] = b.pane[1];
-        a.pane[4] = b.pane[0];
-    }
-}
-int check(int x, int y)
-{
-    if (x &lt; 0 || y &lt; 0 || x &gt; 7 || y &gt; 7)
-        return 0;
-    return 1;
-}
-void spfa(int x, int y, data a)
-{
-    memset(path, -1, sizeof(path));
-    queue&lt;int&gt; q;
-    queue&lt;data&gt; dq;
-    q.push(x);
-    q.push(y);
-    memset(used, 0, sizeof(used));
-    for (int i = 0; i &lt; 8; i++)
-        for (int j = 0; j &lt; 8; j++)
-            for (int k = 0; k &lt; 24; k++)
-            {
-                dist[i][j][k] = inf;
-            }
-    LL tp = a.gethash();
-    if (!mm[tp])
-        mm[tp] = hash++;
-    used[x][y][mm[tp]] = 1;
-    dist[x][y][mm[tp]] = a.pane[4];
-    q.push(mm[tp]);
-    dq.push(a);
-    while (!q.empty())
-    {
-        int ux, uy, ut;
-        ux = q.front();
-        q.pop();
-        uy = q.front();
-        q.pop();
-        ut = q.front();
-        q.pop();
-        data u = dq.front();
-        dq.pop();
-        used[ux][uy][ut] = 0;
-        for (int i = 0; i &lt; 4; i++)
-        {
-            data v = u;
-            roll(i, v, u);
-            int vx, vy;
-            vx = ux + dir[i][0];
-            vy = uy + dir[i][1];
-            LL tp = v.gethash();
-            if (!mm[tp])
-                mm[tp] = hash++;
-            int vt = mm[tp];
-            if (check(vx, vy))
-            {
-                if (dist[vx][vy][vt] &gt; dist[ux][uy][ut] + v.pane[4])
-                {
-                    dist[vx][vy][vt] = dist[ux][uy][ut] + v.pane[4];
-                    path[vx][vy][vt][0] = ux;
-                    path[vx][vy][vt][1] = uy;
-                    path[vx][vy][vt][2] = ut;
-
-                    if (!used[vx][vy][vt])
-                    {
-                        //cout&lt;&lt;vx&lt;&lt;" "&lt;&lt;vy&lt;&lt;" "&lt;&lt;    dist[vx][vy][vt]&lt;&lt;endl;
-                        //cout&lt;&lt;ux&lt;&lt;" "&lt;&lt;uy&lt;&lt;" "&lt;&lt;dist[ux][uy][ut]&lt;&lt;endl;;
-                        q.push(vx);
-                        q.push(vy);
-                        q.push(vt);
-                        dq.push(v);
-                        used[vx][vy][vt] = 1;
-                    }
-                }
-            }
-        }
-    }
-}
-vector&lt;string&gt; res;
-void getans(int tx, int ty, int tt)
-{
-    if (tx == -1 || ty == -1 || tt == -1)
-        return;
-    string s;
-    s.push_back('a' + 7 - ty);
-    s.push_back('1' + 7 - tx);
-    //cout&lt;&lt;s&lt;&lt;endl;
-    getans(path[tx][ty][tt][0], path[tx][ty][tt][1], path[tx][ty][tt][2]);
-    res.push_back(s);
-
-}
-int main()
-{
-    freopen("data.in", "r", stdin);
-    string s, e;
-    cin &gt;&gt; s &gt;&gt; e;
-    data a;
-    int tx, ty, x, y;
-    x = s[0] - 'a';
-    y = s[1] - '1';
-    tx = e[0] - 'a';
-    ty = e[1] - '1';
-    for (int i = 0; i &lt; 6; i++)
-    {
-        cin &gt;&gt; a.pane[i];
-    }
-    spfa(7 - y, 7 - x, a);
-    int ans = inf;
-    int pos;
-    for (int i = 0; i &lt; 24; i++)
-    {
-        if (ans &gt; dist[7 - ty][7 - tx][i])
-        {
-            ans = dist[7 - ty][7 - tx][i];
-            pos = i;
-        }
-    }
-    cout &lt;&lt; ans &lt;&lt; endl;
-    getans(7 - ty, 7 - tx, pos);
-    for (int i = 0; i &lt; res.size(); i++)
-    {
-        cout &lt;&lt; res[i] &lt;&lt; " ";
-    }
-    cout &lt;&lt; endl;
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/10/ural-1016/" data-id="cihelbtvn000awswyqzifrh62" class="article-share-link" data-share="baidu" data-title="ural 1016">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/10/ural-1016/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hdu-4714-Tree2cycle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/09/hdu-4714-Tree2cycle/" class="article-date">
-  <time datetime="2013-09-09T06:06:21.000Z" itemprop="datePublished">2013-09-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/09/hdu-4714-Tree2cycle/">hdu 4714  Tree2cycle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*题意：一个一棵树，去掉一条边的代价为1,加上一条边的代价也为1
- * 问用最小的代价使得这个树变成一个收尾相接的圆环。
- * 解法：先使得一棵树变成一条链。则出了首位点其他点的度都为2
- * 对于每个点来说如果其度为d且d&gt;2则需要去点的d-2条边。此时
- * 可以将问题分两种情况假设T(u)是树上以u为节点的子树。
- * 那么砍掉d-2条边时 
- * 情况1：砍掉的边都是与其子树相连的边，则此时形成一个以u为起点的链。如：/ 形状
- * 情况2：砍掉其父亲边，保留两条边与子节点相连。此时形成以u为中间节点的链。如 ^ 形状
- * 那么我们记录每个子树这两种情况下是的在子树中得到一条链的最小费用
- * f[u][1]与f[u][2];
- * 容易可以推知 f[u][2]&lt;=f[u][1]
- * 下面推出状态转移方程：
- * 情况一：若保留一条边与一个子节点相连，对于砍掉的边花费为f[v][1]+2
- * 那么若全部砍掉所有子节，其花费的和为sum。
- * 则f[u][1]=sum-max(f[v][1]+2-f[v][2]);
- * 情况二：此情况要保留两条边。则保留最大值与次大值就好了。
- * ps：该题目点数过多直接深搜为爆栈空间。在杭电上用c++可以加栈过关
- * 现场赛栈空间有限且不能加栈空间，所以需要把深搜改为循环模拟递归用栈来实现
- *
- */
-//#pragma comment(linker, "/STACK:1024000000,1024000000")
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;stack&gt;
-#include &lt;cstdio&gt;
-#include &lt;queue&gt;
-using namespace std;
-#define vN 1000101
-#define vE 100001*2
-#define inf 0x3fffffff
-struct edge
-{
-    int v, next;
-} e[vN * 2];
-int head[vN], used[vN], en = 0;
-int dp[vN][2];
-void addedge(int x, int y)
-{
-    e[en].v = y;
-    e[en].next = head[x];
-    head[x] = en++;
-    e[en].v = x;
-    e[en].next = head[y];
-    head[y] = en++;
-}
-stack&lt;int&gt; st;
-int father[vN];
-void dfss(int x)
-{
-    st.push(x);
-    father[x] = 0;
-    while (!st.empty())
-    {
-        int u = st.top();
-        if (used[u])
-        {
-            int fmax = 0, smax = 0;
-            int sum = 0;
-            for (int i = head[u]; i != -1; i = e[i].next)
-            {
-                int v = e[i].v;
-                if (v == father[u])
-                    continue;
-                sum += dp[v][1] + 2;
-                int temp = dp[v][1] + 2 - dp[v][0];
-                if (temp &gt; smax)
-                {
-                    smax = temp;
-                    if (smax &gt; fmax)
-                    {
-                        int tp = fmax;
-                        fmax = smax;
-                        smax = tp;
-                    }
-                }
-
-            }
-            dp[u][0] = sum - fmax;
-            dp[u][1] = sum - fmax - smax;
-            st.pop();
-        }
-        else
-        {
-            used[u] = 1;
-            for (int i = head[u]; i != -1; i = e[i].next)
-            {
-                int v = e[i].v;
-                if (!used[v])
-                {
-                    st.push(v);
-                    father[v] = u;
-                }
-
-            }
-        }
-    }
-}
-
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    int t;
-    scanf("%d", &amp;t);
-    while (t--)
-    {
-        en = 0;
-        int n;
-        scanf("%d", &amp;n);
-        memset(used, 0, sizeof(int) * (n + 1));
-        memset(dp, 0, sizeof(int) * (n + 1));
-        memset(head, -1, sizeof(int) * (n + 1));
-        for (int i = 0; i &lt; n - 1; i++)
-        {
-            int x, y;
-            scanf("%d%d", &amp;x, &amp;y);
-            addedge(x, y);
-        }
-        dfss(1);
-        printf("%d\n", min(dp[1][0], dp[1][1]) + 1);
-    }
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/" data-id="cihelbtv70000wswyu3jwgsv5" class="article-share-link" data-share="baidu" data-title="hdu 4714  Tree2cycle">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1109" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/06/ural-1109/" class="article-date">
-  <time datetime="2013-09-06T12:45:27.000Z" itemprop="datePublished">2013-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/06/ural-1109/">ural 1109</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*题意：即将到来的会议A国派出M个代表，B国派出N个代表 (M and N &lt;= 1000)
- * A国的代表编号为1, 2, ..., M ;B国的代表编号为1, 2, ..., N .开会前，
- * 要选择K对代表。每一对代表必须一个是A国的，一个是B国的。A国的成员i与B国的成员j就可结对
- * CEO想建立最少的电话联系。
- * 首行给定M,N,K。以下K行为结对的代表P1,P2。P1是A国的成员，P2是B国的成员。
- * 输出所需的最少电话联系。
- * 解法：最小路径覆盖：顶点数 - 最大匹配数
- * 
- */
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;stack&gt;
-#include &lt;cstdio&gt;
-#include &lt;queue&gt;
-using namespace std;
-#define vN 1005
-#define vE 100001*2
-int map[vN][vN],used[vN],match[vN];
-int n,m,k;
-int hungary(int x)
-{
-    for(int i=1;i&lt;=m;i++)
-    {
-        if(map[x][i]&amp;&amp;!used[i])
-        {
-            used[i]=1;
-            if(match[i]==-1||hungary(match[i]))
-            {
-                match[i]=x;
-                return 1;
-            }
-
-        }
-    }
-    return 0;
-}
-void inihungary()
-{
-    for(int i=0;i&lt;=n;i++)
-    for(int j=0;j&lt;=m;j++)
-    {
-        match[j]=-1;
-        used[j]=0;
-        map[i][j]=0;
-    }
-}
-int sovle()
-{
-    int res=0;
-    for(int i=1;i&lt;=n;i++)
-    {
-            memset(used,0,sizeof(used));
-            res+=hungary(i);
-    }
-    return res;
-}
-int main()
-{
-    //freopen("data.in","r",stdin);
-
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
-    inihungary();
-    for(int i=0;i&lt;k;i++)
-    {
-        int x,y;
-        cin&gt;&gt;x&gt;&gt;y;
-        map[x][y]=1;
-    }
-    cout&lt;&lt;m+n-sovle()&lt;&lt;endl;
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/06/ural-1109/" data-id="cihelbtvn0007wswyp23wzqtq" class="article-share-link" data-share="baidu" data-title="ural 1109">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/06/ural-1109/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1208" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/06/ural-1208/" class="article-date">
-  <time datetime="2013-09-06T06:41:51.000Z" itemprop="datePublished">2013-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/06/ural-1208/">ural 1208</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/* 题意:给出n支acm队伍的名单，这名单中有的队员会重复出现在不同的队伍中。问
- * 能从中挑选出最多少支不出现重复队员的队伍。
- * 解法：求最大独立子集。NP完全的。数据小。暴力搜索。注意一个剪枝。见代码
- */
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;stack&gt;
-#include &lt;cstdio&gt;
-#include &lt;queue&gt;
-using namespace std;
-#define vN 10001*2
-#define vE 100001*2
-#define inf 0x3fffffff
-string s[30][3];
-int adj[20][20];
-int cnt;
-int n;
-int used[20];
-int judge(int x,int y)
-{
-    for(int i=0;i&lt;3;i++)
-    for(int j=0;j&lt;3;j++)
-    {
-        if(s[x][i]==s[y][j])
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
-int dfs(int x,int lev,int used[])
-{
-    int flag=0;
-    int iused[20];
-    for(int i=0;i&lt;n;i++){
-        iused[i]=used[i];
-        if(adj[x][i])iused[i]=1;
-    }
-    iused[x]=1;
-    for(int i=0;i&lt;n;i++)
-    {
-
-        if(iused[i])continue;
-        iused[i]=1;//x之前的节点都要标记为1不在搜索之前的节点
-        dfs(i,lev+1,iused);
-        flag=1;
-    }
-    if(flag==0)
-    {
-        if(cnt&lt;lev)cnt=lev;
-    }
-    return 0;
-}
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt;n; i++)
-    {
-        cin&gt;&gt;s[i][0];
-        cin&gt;&gt;s[i][1];
-        cin&gt;&gt;s[i][2];
-    }
-    memset(adj,0,sizeof(adj));
-    for(int i=0;i&lt;n;i++)
-    {
-        for(int j=i+1;j&lt;n;j++)
-        {
-            if(judge(i,j))
-            {
-                adj[i][j]=1;
-                adj[j][i]=1;
-                //cout&lt;&lt;i&lt;&lt;j&lt;&lt;endl;
-            }
-        }
-    }
-    cnt=0;
-    for(int i=0;i&lt;n;i++)
-    {
-        memset(used,0,sizeof(used));
-        used[i]=1;
-        dfs(i,1,used);
-    }
-
-    cout&lt;&lt;cnt&lt;&lt;endl;
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/06/ural-1208/" data-id="cihelbtvn0006wswyqblr3nal" class="article-share-link" data-share="baidu" data-title="ural 1208">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/06/ural-1208/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1930" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/06/ural-1930/" class="article-date">
-  <time datetime="2013-09-06T03:13:55.000Z" itemprop="datePublished">2013-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/06/ural-1930/">ural 1930</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/* 题意:给出一个图，有一个起点和终点，现在开车从起点驶向重点，路分为上坡和下坡。
- * 求一条从起点到终点的路径使得上下坡转换的次数最少。;
- * 解法：最短路，spfa。把一点拆成以上坡到达和下坡达到两个点。
- * dist[v][vt]=min(dist[v][vt],dist[u][ut]+(ut!=vt));
- */
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;stack&gt;
-#include &lt;cstdio&gt;
-#include &lt;queue&gt;
-using namespace std;
-#define vN 10001*2
-#define vE 100001*2
-#define inf 0x3fffffff
-struct edge
-{
-    int v, next;
-    int c;
-} e[vE];
-int head[vN], used[vN][2], en;
-void addedge(int u, int v, int c)
-{
-    e[en].v = v;
-    e[en].c = c;
-    e[en].next = head[u];
-    head[u] = en++;
-}
-int dist[vN][2];
-int getv(int ut, int vt)
-{
-    if (ut == vt)
-        return 0;
-    return 1;
-}
-int spfa(int s, int t, int n)
-{
-    queue&lt;int&gt; q;
-    memset(used, 0, sizeof(used));
-    for (int i = 0; i &lt;= n; i++)
-    {
-        dist[i][0] = inf;
-        dist[i][1] = inf;
-    }
-    used[s][0] = 1;
-    dist[s][0] = 0;
-    dist[s][1] = 0;
-    used[s][1] = 1;
-    q.push(s);
-    q.push(0);
-    q.push(s);
-    q.push(1);
-    while (!q.empty())
-    {
-        int u = q.front();
-        q.pop();
-        int ut = q.front();
-        q.pop();
-        for (int i = head[u]; i != -1; i = e[i].next)
-        {
-            int v = e[i].v;
-            int vt = e[i].c;
-            if (dist[v][vt] &gt; dist[u][ut] + getv(ut, vt))
-            {
-                dist[v][vt] = dist[u][ut] + getv(ut, vt);
-                if (!used[v][vt])
-                {
-                    q.push(v);
-                    q.push(vt);
-                    used[v][vt] = 1;
-                }
-            }
-
-        }
-    }
-    return min(dist[t][0],dist[t][1]);
-}
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    memset(head, -1, sizeof(head));
-    en = 0;
-    int n, m;
-    cin &gt;&gt; n &gt;&gt; m;
-    for (int i = 0; i &lt; m; i++)
-    {
-        int x, y;
-        cin &gt;&gt; x &gt;&gt; y;
-        addedge(x, y, 0);
-        addedge(y, x, 1);
-    }
-    int s, t;
-    cin &gt;&gt; s &gt;&gt; t;
-    cout &lt;&lt; spfa(s, t, n) &lt;&lt; endl;
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/06/ural-1930/" data-id="cihelbtvn0002wswymexr81ny" class="article-share-link" data-share="baidu" data-title="ural 1930">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/06/ural-1930/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1210" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/05/ural-1210/" class="article-date">
-  <time datetime="2013-09-05T03:12:33.000Z" itemprop="datePublished">2013-09-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/05/ural-1210/">ural 1210</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/* 题意：给出一颗二叉树的中序遍历和后序遍历，求出其右左中的遍历
- * 解法：一边根据已知的两种序列进行树的dfs同时打印出要求遍历的序列。
- */
-#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;stack&gt;
-#include &lt;cstdio&gt;
-using namespace std;
-#define vN 30003
-int base[2][3005];
-stack&lt;int&gt; T;
-int n;
-int dfs(int root, int pos, int s, int e)
-{
-    if (T.size() == 0)
-    {
-        cout &lt;&lt; root &lt;&lt; " ";
-        return 0;
-    }
-    int u = T.top();
-    for (int i = pos + 1; i &lt;= e; i++)
-    {
-        if (base[1][i] == u)
-        {
-            T.pop();
-            dfs(u, i, pos + 1, e);
-        }
-    }
-    if (T.size() == 0)
-    {
-        cout &lt;&lt; root &lt;&lt; " ";
-        return 0;
-    }
-    u = T.top();
-    for (int i = s; i &lt; pos; i++)
-    {
-        if (base[1][i] == u)
-        {
-            T.pop();
-            dfs(u, i, s, pos - 1);
-        }
-    }
-    cout &lt;&lt; root &lt;&lt; " ";
-    return 0;
-}
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i++)
-    {
-        cin &gt;&gt; base[0][i];
-        T.push(base[0][i]);
-        base[1][i] = base[0][i];
-    }
-    sort(base[1], base[1] + n);
-    int u = T.top();
-    T.pop();
-    int pos;
-    for (int i = 0; i &lt; n; i++)
-    {
-        if (base[1][i] == u)
-            pos = i;
-    }
-    dfs(u, pos, 0, n - 1);
-    return 0;
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/05/ural-1210/" data-id="cihelbtvn0005wswycthcccs6" class="article-share-link" data-share="baidu" data-title="ural 1210">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/05/ural-1210/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1277" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/04/ural-1277/" class="article-date">
-  <time datetime="2013-09-04T10:14:18.000Z" itemprop="datePublished">2013-09-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/04/ural-1277/">ural 1277</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
- * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
- * 解法：把n个城市拆成两个点建立边容量为Ki,其他边容量inf。看s到f的最大流是否小与k
- */
-#include &lt;functional&gt;
-#include &lt;algorithm&gt;
-#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-#include &lt;numeric&gt;
-#include &lt;cstring&gt;
-#include &lt;cassert&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-#include &lt;math.h&gt;
-#include &lt;ctime&gt;
-
-#include &lt;list&gt;
-#include &lt;set&gt;
-#include &lt;map&gt;
-#include&lt;time.h&gt;
-using namespace std;
-#define N 250
-#define E 105*105*16
-
-#define typec int                   // type of cost
-const typec inf = 0x3f3f3f3f; // max of cost
-struct edge
-{
-        int x, y, nxt;
-        typec c;
-} bf[E];
-int ne, head[N], cur[N], ps[N], dep[N];
-void addedge(int x, int y, typec c)
-{ // add an arc(x -&gt; y, c);vertex: 0 ~ n-1;
-    bf[ne].x = x;
-    bf[ne].y = y;
-    bf[ne].c = c;
-    bf[ne].nxt = head[x];
-    head[x] = ne++;
-    bf[ne].x = y;
-    bf[ne].y = x;
-    bf[ne].c = 0;
-    bf[ne].nxt = head[y];
-    head[y] = ne++;
-}
-typec flow(int n, int s, int t)
-{
-    typec tr, res = 0;
-    int i, j, k, f, r, top;
-    while (1)
-    {
-        memset(dep, -1, n * sizeof(int));
-        for (f = dep[ps[0] = s] = 0, r = 1; f != r;)
-            for (i = ps[f++], j = head[i]; j; j = bf[j].nxt)
-            {
-                if (bf[j].c &amp;&amp; -1 == dep[k = bf[j].y])
-                {
-                    dep[k] = dep[i] + 1;
-                    ps[r++] = k;
-                    if (k == t)
-                    {
-                        f = r;
-                        break;
-                    }
-                }
-            }
-        if (-1 == dep[t])
-            break;
-        memcpy(cur, head, n * sizeof(int));
-        for (i = s, top = 0;;)
-        {
-            if (i == t)
-            {
-                for (k = 0, tr = inf; k &lt; top; ++k)
-                    if (bf[ps[k]].c &lt; tr)
-                        tr = bf[ps[f = k]].c;
-                for (k = 0; k &lt; top; ++k)
-                    bf[ps[k]].c -= tr, bf[ps[k] ^ 1].c += tr;
-                res += tr;
-                i = bf[ps[top = f]].x;
-            }
-            for (j = cur[i]; cur[i]; j = cur[i] = bf[cur[i]].nxt)
-                if (bf[j].c &amp;&amp; dep[i] + 1 == dep[bf[j].y])
-                    break;
-            if (cur[i])
-            {
-                ps[top++] = cur[i];
-                i = bf[cur[i]].y;
-            }
-            else
-            {
-                if (0 == top)
-                    break;
-                dep[i] = -1;
-                i = bf[ps[--top]].x;
-            }
-        }
-    }
-    return res;
-}
-int base[N];
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    int k, n,m,s, f;
-    ne = 2;
-    memset(head, 0, sizeof(head));
-    cin &gt;&gt; k;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; f;
-
-    for (int i = 1; i &lt;= n; i++)
-    {
-        cin &gt;&gt; base[i];
-        if(i==s||i==f)base[i]=inf;
-        addedge(2 * i - 1, 2 * i, base[i]);
-
-    }
-    for (int i = 0; i &lt; m; i++)
-    {
-        int x, y;
-        cin &gt;&gt; x &gt;&gt; y;
-        addedge(2 * x, 2 * y - 1, inf);
-        addedge(2 * y, 2 * x - 1, inf);
-    }
-    n = 2 * n;
-    int res=flow(n+1,2 * s - 1, 2 * f);
-    if(res&gt;k)cout&lt;&lt;"NO"&lt;&lt;endl;
-    else cout&lt;&lt;"YES"&lt;&lt;endl;
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/04/ural-1277/" data-id="cihelbtvn0004wswyuoapv0ed" class="article-share-link" data-share="baidu" data-title="ural 1277">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/04/ural-1277/#ds-thread" class="article-comment-link">評論</a>
       
 
       
@@ -1482,14 +813,28 @@ int main()
     
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">標簽</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">標簽雲</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/编程语言/" style="font-size: 20px;">编程语言</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">歸檔</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -1501,23 +846,23 @@ int main()
       <ul>
         
           <li>
-            <a href="/2015/11/24/hello-world/">Hello World</a>
+            <a href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
           </li>
         
           <li>
-            <a href="/2014/06/11/二分搜索总结/">二分搜索总结</a>
+            <a href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
           </li>
         
           <li>
-            <a href="/2013/10/11/ural-1613/">ural 1613</a>
+            <a href="/2016/04/25/coding技巧总结/">coding技巧集锦</a>
           </li>
         
           <li>
-            <a href="/2013/09/10/ural-1016/">ural 1016</a>
+            <a href="/2016/04/25/手写程序集锦/">手写程序集锦</a>
           </li>
         
           <li>
-            <a href="/2013/09/09/hdu-4714-Tree2cycle/">hdu 4714  Tree2cycle</a>
+            <a href="/2016/04/25/操作系统基础-进程/">操作系统基础-进程</a>
           </li>
         
       </ul>
@@ -1551,7 +896,7 @@ int main()
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Bu Guochao<br>
+      &copy; 2016 Bu Guochao<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
       .
       Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
@@ -1624,6 +969,44 @@ var duoshuoQuery = {short_name:"bu540402githubio"};
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
   <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
 <script src="/js/script.js" type="text/javascript"></script>
