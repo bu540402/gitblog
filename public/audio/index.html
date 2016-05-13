@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+<body>
+<div id="audio-player"></div>
+<script>
+    //var player = new Clappr.Player({
+    //    source: "http://audiostream.ziyoufang.com/hls/12.m3u8",
+    //    parentId: "#audio-player",
+    //    autoPlay: true
+    //});
+    var player = new Clappr.Player({
+        source: "http://audiostream.ziyoufang.com/hls/chao.m3u8",
+        parentId: "#audio-player",
+        audioOnly: true,
+		width: 480,
+		height: 640,
+		autoPlay:true
+    });
+</script>
+</body>
+</html>

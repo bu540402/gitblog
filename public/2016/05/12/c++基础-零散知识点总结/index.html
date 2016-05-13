@@ -7,18 +7,27 @@
   <title>c++基础：零散知识点总结 | Learning4Fun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="c++基础：零散知识点总结[TOC]
-内联函数内联函数定义内联函数使用内联函数的原理深拷贝什么是深拷贝什么时候需要深拷贝">
+内联函数内联函数的使用可以通过在函数定义前添加inline关键字对函数进行修饰，则该函数为内联函数。所谓内联函数就是它在程序中每个调用点上都内联的展开。这样就可以避免函数调用的开销。一般使得一个函数成为一个内联函数有下面两种方式：
+
+在函数定义前加上inline关键字，例如
+1inline func(int a)&amp;#123; return a;&amp;#125;;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++基础：零散知识点总结">
 <meta property="og:url" content="http://yoursite.com/2016/05/12/c++基础-零散知识点总结/index.html">
 <meta property="og:site_name" content="Learning4Fun">
 <meta property="og:description" content="c++基础：零散知识点总结[TOC]
-内联函数内联函数定义内联函数使用内联函数的原理深拷贝什么是深拷贝什么时候需要深拷贝">
-<meta property="og:updated_time" content="2016-05-12T11:25:23.569Z">
+内联函数内联函数的使用可以通过在函数定义前添加inline关键字对函数进行修饰，则该函数为内联函数。所谓内联函数就是它在程序中每个调用点上都内联的展开。这样就可以避免函数调用的开销。一般使得一个函数成为一个内联函数有下面两种方式：
+
+在函数定义前加上inline关键字，例如
+1inline func(int a)&amp;#123; return a;&amp;#125;;">
+<meta property="og:updated_time" content="2016-05-12T12:54:05.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++基础：零散知识点总结">
 <meta name="twitter:description" content="c++基础：零散知识点总结[TOC]
-内联函数内联函数定义内联函数使用内联函数的原理深拷贝什么是深拷贝什么时候需要深拷贝">
+内联函数内联函数的使用可以通过在函数定义前添加inline关键字对函数进行修饰，则该函数为内联函数。所谓内联函数就是它在程序中每个调用点上都内联的展开。这样就可以避免函数调用的开销。一般使得一个函数成为一个内联函数有下面两种方式：
+
+在函数定义前加上inline关键字，例如
+1inline func(int a)&amp;#123; return a;&amp;#125;;">
   
     <link rel="alternative" href="/atom.xml" title="Learning4Fun" type="application/atom+xml">
   
@@ -96,12 +105,35 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="c++基础：零散知识点总结">c++基础：零散知识点总结</h1><p>[TOC]</p>
-<h2 id="内联函数">内联函数</h2><h3 id="内联函数定义">内联函数定义</h3><h3 id="内联函数使用">内联函数使用</h3><h3 id="内联函数的原理">内联函数的原理</h3><h2 id="深拷贝">深拷贝</h2><h3 id="什么是深拷贝">什么是深拷贝</h3><h3 id="什么时候需要深拷贝">什么时候需要深拷贝</h3>
+<h2 id="内联函数">内联函数</h2><h3 id="内联函数的使用">内联函数的使用</h3><p>可以通过在<strong>函数定义</strong>前添加inline关键字对函数进行修饰，则该函数为内联函数。所谓内联函数就是它在程序中每个调用点上都内联的展开。这样就可以<strong>避免函数调用的开销</strong>。一般使得一个函数成为一个内联函数有下面两种方式：</p>
+<ol>
+<li><p>在函数定义前加上inline关键字，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123; <span class="keyword">return</span> a;&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在类声明中部分定义的函数默认为内联函数，如</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getA</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> a;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="内联函数的原理">内联函数的原理</h3><p>在程序编译阶段，编译器会将程序中出现的内联函数的调用表达式用内联函数的函数体进行替代。但是<strong>编译器在优化内联函数时，必须知道函数定义的内容，这就意味着内联函数的定义和对该函数的调用必须在同一文件中，因此在多文件程序中，每个调用内联函数的文件必须对该函数进行定义</strong>，一般的解决方法就是讲内联函数的定义放在头文件中，并在调用该函数的文件中包含此头文件。</p>
+<p><strong>内联函数的替换发生在编译的哪个阶段？</strong></p>
+<h3 id="内联函数的Q&amp;A">内联函数的Q&amp;A</h3><ol>
+<li><p>内联函数一定会内联展开吗？</p>
+<p>答案是否定的。对于内联函数，程序只是提供了一个“内联建议”，即建议编译器把函数用内联展开，但是真正是否内联，是由编译器决定的。有以下几种情况，内联函数可能会不被替换：</p>
+<ul>
+<li>对于函数体过大的函数，编译器一般不会内联，即使制定为内联函数。</li>
+<li>在内联函数内部，不允许用循环语句和开关语句（if或switch）。内联函数内部有循环和开关，也不会出错，但是编译器会把它当做非内联函数的。</li>
+<li>关键字inline必须与函数定义体放在一起才能使函数真正内联，仅把inline放在函数声明的前面不起任何作用。因为inline是一种用于实现的关键字，不是一种用于声明的关键字。内联函数的声明是不需要加inline关键字的，内联函数的定义是必须加inline的（除了类的定义部分的默认内联函数），尽管很多书声明定义都加了，要注意理解声明和定义的区别。</li>
+</ul>
+</li>
+<li>内联函数一定要定义在头文件中么？<br>通常情况下内联函数被定义在头文件中。如果内联函数的声明与定义分开。那么需要在调用该内联函数的.c文件中对该内联函数进行定义。否则在编译时会出现链接失败的错误。</li>
+<li>内联函数一定要定义在被调用之前么？<br>是的，内联函数的定义必须在第一次调用之前。注意，这里是定义之前，不仅仅是声明之前。对于普通函数，可以在调用之前声明，调用代码之后具体定义（实现函数），但是内联函数要实现内联，必须先定义再调用，否则编译器会把在定义之前调用的内联函数当做普通函数进行调用。<h2 id="constexpr_函数">constexpr 函数</h2>待更新</li>
+</ol>
+<h2 id="深拷贝">深拷贝</h2><h3 id="什么是深拷贝">什么是深拷贝</h3><h3 id="什么时候需要深拷贝">什么时候需要深拷贝</h3>
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2016/05/12/c++基础-零散知识点总结/" data-id="cio47pdru000qnowyg37o0cyh" class="article-share-link" data-share="baidu" data-title="c++基础：零散知识点总结">分享到</a>
+        <a data-url="http://yoursite.com/2016/05/12/c++基础-零散知识点总结/" data-id="cio55hqat000stcwy7r59gou4" class="article-share-link" data-share="baidu" data-title="c++基础：零散知识点总结">分享到</a>
       
 
       
@@ -116,6 +148,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/05/12/c++基础-异常处理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          c++基础-异常处理
+        
+      </div>
+    </a>
   
   
     <a href="/2016/04/26/c++基础-类与继承/" id="article-nav-older" class="article-nav-link-wrap">
@@ -160,7 +201,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">歸檔</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -172,23 +213,23 @@
       <ul>
         
           <li>
+            <a href="/2016/05/12/git使用手册/">git使用手册</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/数据结构-hash表/">数据结构-hash表</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/c++基础-异常处理/">c++基础-异常处理</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
           </li>
         
           <li>
             <a href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/coding技巧总结/">coding技巧集锦</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/手写程序集锦/">手写程序集锦</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/操作系统基础-进程/">操作系统基础-进程</a>
           </li>
         
       </ul>

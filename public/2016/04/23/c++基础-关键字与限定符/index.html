@@ -6,7 +6,7 @@
   
   <title>c++基础：关键字与限定符 | Learning4Fun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="c++基础：关键字与限定符[TOC]
+  <meta name="description" content="[TOC]
 const 限定符const限定符用于限定一个对象不能发生改变。
 const修饰对象
 
@@ -16,12 +16,12 @@ const对象被设定为仅在文件内有效
 const对象以及常量对象的引用或者指针只能调用常量成员函数
 
 
-const修饰类成员函数const修饰类成员函数相当于把修改隐式this">
+const修饰类成员函数const修饰类成员函数相当于把修改隐式this指针的类型，this指针默">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++基础：关键字与限定符">
 <meta property="og:url" content="http://yoursite.com/2016/04/23/c++基础-关键字与限定符/index.html">
 <meta property="og:site_name" content="Learning4Fun">
-<meta property="og:description" content="c++基础：关键字与限定符[TOC]
+<meta property="og:description" content="[TOC]
 const 限定符const限定符用于限定一个对象不能发生改变。
 const修饰对象
 
@@ -31,11 +31,11 @@ const对象被设定为仅在文件内有效
 const对象以及常量对象的引用或者指针只能调用常量成员函数
 
 
-const修饰类成员函数const修饰类成员函数相当于把修改隐式this">
-<meta property="og:updated_time" content="2016-05-09T04:57:02.232Z">
+const修饰类成员函数const修饰类成员函数相当于把修改隐式this指针的类型，this指针默">
+<meta property="og:updated_time" content="2016-05-13T02:21:44.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++基础：关键字与限定符">
-<meta name="twitter:description" content="c++基础：关键字与限定符[TOC]
+<meta name="twitter:description" content="[TOC]
 const 限定符const限定符用于限定一个对象不能发生改变。
 const修饰对象
 
@@ -45,7 +45,7 @@ const对象被设定为仅在文件内有效
 const对象以及常量对象的引用或者指针只能调用常量成员函数
 
 
-const修饰类成员函数const修饰类成员函数相当于把修改隐式this">
+const修饰类成员函数const修饰类成员函数相当于把修改隐式this指针的类型，this指针默">
   
     <link rel="alternative" href="/atom.xml" title="Learning4Fun" type="application/atom+xml">
   
@@ -122,7 +122,7 @@ const修饰类成员函数const修饰类成员函数相当于把修改隐式this
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="c++基础：关键字与限定符">c++基础：关键字与限定符</h1><p>[TOC]</p>
+        <p>[TOC]</p>
 <h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
 <h3 id="const修饰对象">const修饰对象</h3><blockquote>
 <ul>
@@ -135,22 +135,23 @@ const修饰类成员函数const修饰类成员函数相当于把修改隐式this
 <h3 id="const修饰类成员函数">const修饰类成员函数</h3><p>const修饰类成员函数相当于把修改隐式this指针的类型，this指针默认情况下是一个指向非常量对象的常量指针。const修饰成员函数之后，this指针的类型被改变为指向常量对象的常量指针。所以const修饰函数无法改变类的成员。</p>
 <blockquote>
 <ul>
-<li>const修饰类成员函数时，表面该函数不能修改类成员，否则编译器会报错</li>
+<li>const修饰类成员函数时，表明该函数不能修改类成员，否则编译器会报错</li>
+<li><strong>特别值得注意的是当const引用只能调用const方法，否则会编译报错</strong></li>
 </ul>
 </blockquote>
-<h3 id="const修饰引用与指针">const修饰引用与指针</h3><p>详见</p>
+<h3 id="const修饰引用与指针">const修饰引用与指针</h3><p>详见 <a href="http://bu540402.github.io/2016/04/23/c++%E5%9F%BA%E7%A1%80-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" target="_blank" rel="external">c++基础：指针与引</a></p>
 <h3 id="const与函数重载">const与函数重载</h3><blockquote>
 <ul>
 <li>在函数重载中，顶层const（自身是常量的对象：常量对象或者本身是常量的指针）的形参无法与非顶层const的形参区分开来。</li>
 <li>在函数重载重，底层 const（常量引用以及指向常量的指针）可以与非常量对象区别从而实现重载</li>
 </ul>
 </blockquote>
-
+<h3 id="static限定符">static限定符</h3><h3 id="访问权限限定符:public,private,protected">访问权限限定符:public,private,protected</h3>
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2016/04/23/c++基础-关键字与限定符/" data-id="cio47pdqd0000nowym3sa7ptv" class="article-share-link" data-share="baidu" data-title="c++基础：关键字与限定符">分享到</a>
+        <a data-url="http://yoursite.com/2016/04/23/c++基础-关键字与限定符/" data-id="cio55hq8m0000tcwy1myl4trz" class="article-share-link" data-share="baidu" data-title="c++基础：关键字与限定符">分享到</a>
       
 
       
@@ -218,7 +219,7 @@ const修饰类成员函数const修饰类成员函数相当于把修改隐式this
   <div class="widget-wrap">
     <h3 class="widget-title">歸檔</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -230,23 +231,23 @@ const修饰类成员函数const修饰类成员函数相当于把修改隐式this
       <ul>
         
           <li>
+            <a href="/2016/05/12/git使用手册/">git使用手册</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/数据结构-hash表/">数据结构-hash表</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/c++基础-异常处理/">c++基础-异常处理</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
           </li>
         
           <li>
             <a href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/coding技巧总结/">coding技巧集锦</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/手写程序集锦/">手写程序集锦</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/操作系统基础-进程/">操作系统基础-进程</a>
           </li>
         
       </ul>

@@ -71,6 +71,330 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/11/24/hello-world/" class="article-date">
+  <time datetime="2015-11-24T03:10:45.073Z" itemprop="datePublished">2015-11-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/24/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2015/11/24/hello-world/" data-id="cio55hqad000otcwyl8wxr4xi" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2015/11/24/hello-world/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-二分搜索总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/06/11/二分搜索总结/" class="article-date">
+  <time datetime="2014-06-11T08:38:51.000Z" itemprop="datePublished">2014-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/06/11/二分搜索总结/">二分搜索总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>若 p(x)成立，对于所有的y&gt;x, p(y)都成立。当然，若p(x) 不成立，所有y &lt; x, p(y)都不成立。</strong></p>
+<h5 id="使得p（x）成立的第一个满足条件的位置">使得p（x）成立的第一个满足条件的位置</h5><pre config="brush:cpp;toolbar:false;">
+int binary_search(int a[], int low, int high)
+{
+    int mid;
+    while (low &lt; high)
+    {
+        mid = low + (high - low) / 2;
+        if (p(mid))
+            high = mid;
+        else
+            low = mid + 1;
+        return low;
+    }
+    if (p(low) == false)
+    return -1;
+}
+</pre>
+
+<h5 id="使得p(x)成立的最后一个满足条件的位置">使得p(x)成立的最后一个满足条件的位置</h5><pre config="brush:cpp;toolbar:false;">
+int binary_search(int a[], int low, int high)
+{
+    int mid;
+    while (low &lt; high)
+    {
+        mid = (high + low+1) / 2;
+        if (p(mid))
+            low = mid;
+        else
+            hight= mid - 1;
+        return low;
+    }
+    if (p(low) == false)
+    return -1;
+}
+</pre>
+
+<h5 id="第一个大于等于V">第一个大于等于V</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h) &gt;&gt; 1;
+        if (a[m]&gt;= v)
+            h = m;
+        else
+            l = m + 1;
+    }
+    if(a[l]&lt;v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="等于V的第一个">等于V的第一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h) &gt;&gt; 1;
+        if (a[m]&gt;= v)
+            h = m;
+        else
+            l = m + 1;
+    }
+    if(a[l]!=v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="大于V的第一个">大于V的第一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h) &gt;&gt; 1;
+        if (a[m]&gt; v)
+            h = m;
+        else
+            l = m + 1;
+    }
+    if(a[l]&lt;=v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="小于等于的最后一个">小于等于的最后一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h+1) &gt;&gt; 1;
+        if (a[m]&lt;=v)
+            l = m;
+        else
+            h = m - 1;
+    }
+    if(a[l]&gt;v)return -1;
+    return l;
+}
+</pre>
+
+<h5 id="小于的最后一个">小于的最后一个</h5><pre config="brush:cpp;toolbar:false;">
+int bs(int a[], int l, int h, int v)
+{
+    int m;
+    while (l &lt; h)
+    {
+        m = (l + h+1) &gt;&gt; 1;
+        if (a[m]&lt;v)
+            l = m;
+        else
+            h = m - 1;
+    }
+    if(a[l]&gt;=v)return -1;
+    return l;
+}
+</pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2014/06/11/二分搜索总结/" data-id="cio55hq9i000etcwyyugx3efb" class="article-share-link" data-share="baidu" data-title="二分搜索总结">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2014/06/11/二分搜索总结/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ural-1613" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/10/11/ural-1613/" class="article-date">
+  <time datetime="2013-10-11T12:22:37.000Z" itemprop="datePublished">2013-10-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/10/11/ural-1613/">ural 1613</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre config="brush:cpp;toolbar:false;">/*题意：给出n个数，给出q个询问L R V.对于每个询问问L R之间是否存在v
+ *解法：把原数组连同下标一起排序。对于每个询问问查询一个第一个大于等于v且下标大于等于L的
+ *的数字。若该数字和v相同且下标在LR之间。则为1否则为0.
+ * 
+ */
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+//#include &lt;fstream&gt;
+#include &lt;sstream&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+#include &lt;cstdio&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;ctime&gt;
+#include &lt;list&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#include &lt;math.h&gt;
+using namespace std;
+struct data
+{
+        int val;
+        int rank;
+        bool operator &lt;(const data &amp;d)const
+        {
+            if (d.val == val)
+                return rank &lt; d.rank;
+            return val &lt; d.val;
+        }
+
+};
+vector&lt;data&gt; base;
+int main()
+{
+    freopen("data.in", "r", stdin);
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++)
+    {
+        data a;
+        cin &gt;&gt; a.val;
+        a.rank = i;
+        base.push_back(a);
+    }
+    sort(base.begin(), base.end());
+    int q;
+    cin &gt;&gt; q;
+    vector&lt;data&gt;::iterator it;
+    for (int i = 0; i &lt; q; i++)
+    {
+        int x, y, d;
+        data a;
+        cin &gt;&gt; x &gt;&gt; y &gt;&gt; d;
+        a.val = d;
+        a.rank = x;
+        it = lower_bound(base.begin(), base.end(), a);
+        if (it-&gt;val == d &amp;&amp; (it-&gt;rank &gt;= x &amp;&amp; it-&gt;rank &lt;= y))
+            cout &lt;&lt; 1;
+        else
+            cout &lt;&lt; 0;
+
+    }
+}</pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2013/10/11/ural-1613/" data-id="cio55hq9i000gtcwy2j4bkjqp" class="article-share-link" data-share="baidu" data-title="ural 1613">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2013/10/11/ural-1613/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ural-1016" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/10/ural-1016/" class="article-date">
@@ -305,7 +629,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/10/ural-1016/" data-id="cio47pdrq000mnowyzfwkdy3b" class="article-share-link" data-share="baidu" data-title="ural 1016">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/10/ural-1016/" data-id="cio55hqad000ntcwyketmz3he" class="article-share-link" data-share="baidu" data-title="ural 1016">分享到</a>
       
 
       
@@ -469,7 +793,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/" data-id="cio47pdru000onowy4a549nda" class="article-share-link" data-share="baidu" data-title="hdu 4714  Tree2cycle">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/" data-id="cio55hqad000ptcwy5zgplg7u" class="article-share-link" data-share="baidu" data-title="hdu 4714  Tree2cycle">分享到</a>
       
 
       
@@ -581,7 +905,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/06/ural-1109/" data-id="cio47pdr8000jnowy0p41cr3o" class="article-share-link" data-share="baidu" data-title="ural 1109">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/06/ural-1109/" data-id="cio55hq9x000ktcwygjuci98n" class="article-share-link" data-share="baidu" data-title="ural 1109">分享到</a>
       
 
       
@@ -710,7 +1034,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/06/ural-1208/" data-id="cio47pdr8000inowy7nkkud87" class="article-share-link" data-share="baidu" data-title="ural 1208">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/06/ural-1208/" data-id="cio55hq9x000jtcwyipvayf64" class="article-share-link" data-share="baidu" data-title="ural 1208">分享到</a>
       
 
       
@@ -847,7 +1171,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/06/ural-1930/" data-id="cio47pdr8000enowye56aldx2" class="article-share-link" data-share="baidu" data-title="ural 1930">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/06/ural-1930/" data-id="cio55hq9i000ftcwy8fg4ele0" class="article-share-link" data-share="baidu" data-title="ural 1930">分享到</a>
       
 
       
@@ -956,7 +1280,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/05/ural-1210/" data-id="cio47pdr8000hnowyu3m3df1u" class="article-share-link" data-share="baidu" data-title="ural 1210">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/05/ural-1210/" data-id="cio55hq9i000itcwyxwp2do4c" class="article-share-link" data-share="baidu" data-title="ural 1210">分享到</a>
       
 
       
@@ -1131,7 +1455,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/04/ural-1277/" data-id="cio47pdr8000gnowyfsqwfguc" class="article-share-link" data-share="baidu" data-title="ural 1277">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/04/ural-1277/" data-id="cio55hq9i000htcwya5vr2shf" class="article-share-link" data-share="baidu" data-title="ural 1277">分享到</a>
       
 
       
@@ -1146,260 +1470,9 @@ int main()
 
 
   
-    <article id="post-ural-1040" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/04/ural-1040/" class="article-date">
-  <time datetime="2013-09-04T10:08:55.000Z" itemprop="datePublished">2013-09-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/04/ural-1040/">ural 1040</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*題意：一個圖有mt條邊，給他們從1到m編號，要求有公共節點的邊的gcd爲1.問是否可以行，給出一種方案。
- * 解法：假設一個點鄰接a跳邊。則a條邊中有兩條互質即可。所以我們dfs一邊對於一個點入邊與出邊編號i與i+1
- * 則該店其他邊任意編號滿足。故按照dfs順序遍歷一遍給邊編號即可。
- */
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;deque&gt;
-#include&lt;stdio.h&gt;
-#include&lt;cstring&gt;
-using namespace std;
-#define vN 55
-#define vE 5005
-struct edge
-{
-        int v,next;
-}e[vE];
-int used[vN],en=0,head[vN];
-void addedge(int u,int v)
-{
-    e[en].v=v;
-    e[en].next=head[u];
-    head[u]=en++;
-    e[en].v=u;
-    e[en].next=head[v];
-    head[v]=en++;
-}
-int color[vE];
-int cnt=1;
-void dfs(int x)
-{
-    used[x]=1;
-    for(int i=head[x];i!=-1;i=e[i].next)
-    {
-        int v=e[i].v;
-        if(!color[i])
-        {
-            color[i]=cnt;
-            color[i^1]=cnt++;
-            //cout&lt;&lt;i&lt;&lt;endl;
-            dfs(v);
-        }
-    }
-}
-int main()
-{
-    int n,m;
-    cin&gt;&gt;n&gt;&gt;m;
-    memset(head,-1,sizeof(head));
-    memset(color,0,sizeof(color));
-    en=0;
-    for(int i=0;i&lt;m;i++)
-    {
-        int x,y;
-        cin&gt;&gt;x&gt;&gt;y;
-        addedge(x,y);
-    }
-    for(int i=1;i&lt;=n;i++)
-    {
-        if(!used[i])
-        dfs(i);
-    }
-    cout&lt;&lt;"YES"&lt;&lt;endl;
-    for(int i=0;i&lt;m;i++)
-    {
-        cout&lt;&lt;color[2*i]&lt;&lt;" ";
-    }
-    cout&lt;&lt;endl;
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/04/ural-1040/" data-id="cio47pdr8000lnowyn6sinlm8" class="article-share-link" data-share="baidu" data-title="ural 1040">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/04/ural-1040/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1106" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/04/ural-1106/" class="article-date">
-  <time datetime="2013-09-04T01:50:24.000Z" itemprop="datePublished">2013-09-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/04/ural-1106/">ural 1106</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*题意：把一个图中的点分为两组，保证每个组的任意节点在另外一组一定有一个与之相邻的节点。
- * 解法：bfs一遍黑白染色。图可能不联通。只有一个节点的则不能成功分组。
- */
-#include &lt;functional&gt;
-#include &lt;algorithm&gt;
-#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-#include &lt;numeric&gt;
-#include &lt;cstring&gt;
-#include &lt;cassert&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-#include &lt;math.h&gt;
-#include &lt;ctime&gt;
-#include &lt;list&gt;
-#include &lt;set&gt;
-#include &lt;map&gt;
-#include&lt;time.h&gt;
-using namespace std;
-#define LL long long
-#define vN 105
-int adj[vN][vN];
-int used[vN],n;
-int color[vN];
-int bfs(int x)
-{
-    int cnt=0;
-    queue&lt;int&gt; q;
-    q.push(x);
-    used[x]=1;
-    color[x]=0;
-    while(!q.empty())
-    {
-        int u=q.front()
-                ;
-        q.pop();
-        cnt++;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(!used[i]&amp;&amp;adj[u][i])
-            {
-                q.push(i);
-                color[i]=1-color[u];
-                used[i]=1;
-            }
-        }
-    }
-    return cnt;
-}
-
-int main()
-{
-    //freopen("data.in","r",stdin);
-    memset(used,0,sizeof(used));
-    memset(adj,0,sizeof(adj));
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;=n;i++)
-    {
-        int x;
-        while(cin&gt;&gt;x&amp;&amp;x)
-        {
-            adj[i][x]=1;
-            adj[x][i]=1;
-        }
-    }
-    int ans=-1;
-    for(int i=1;i&lt;=n;i++)
-    {
-        if(!used[i])
-        {
-            int flag=bfs(i);
-            if(flag==1)
-            {
-                ans=0;
-            }
-        }
-    }
-    if(ans==0)cout&lt;&lt;ans&lt;&lt;endl;
-    else
-    {
-        int cnt=0;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(color[i])cnt++;
-        }
-        cout&lt;&lt;cnt&lt;&lt;endl;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(color[i])
-            {
-                cout&lt;&lt;i&lt;&lt;" ";
-            }
-        }
-        cout&lt;&lt;endl;
-    }
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/04/ural-1106/" data-id="cio47pdr8000knowytlybo8qu" class="article-share-link" data-share="baidu" data-title="ural 1106">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/04/ural-1106/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -1430,7 +1503,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">歸檔</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -1442,23 +1515,23 @@ int main()
       <ul>
         
           <li>
+            <a href="/2016/05/12/git使用手册/">git使用手册</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/数据结构-hash表/">数据结构-hash表</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/12/c++基础-异常处理/">c++基础-异常处理</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
           </li>
         
           <li>
             <a href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/coding技巧总结/">coding技巧集锦</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/手写程序集锦/">手写程序集锦</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/25/操作系统基础-进程/">操作系统基础-进程</a>
           </li>
         
       </ul>

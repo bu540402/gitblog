@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="iso-8859-1" content="text/html" http-equiv="Content-Type">
+<script type="text/javascript" charset="utf-8" src="http://cdn.clappr.io/latest/underscore.js"> </script>
+<script type="text/javascript" charset="utf-8" src="http://cdn.clappr.io/latest/jquery.js"> </script>
+<script type="text/javascript" charset="utf-8" src="http://cdn.clappr.io/latest/clappr.min.js"> </script>
+
+</head>
+
+<body>
+
+<div>
+  <div class="clip-preview">
+  <div id="player"></div>
+      <script>
+    var player = new Clappr.Player({source: "http://audiostream.ziyoufang.com/hls/ad.m3u8",width:0,height:0,parentId: "#player",autoPlay:true});
+  </script>
+    <p>This player's <code>&lt;source&gt;</code> element is an <code>.m3u8</code> playlist that excludes
+    the low-bandwith <code>.aac</code>.<p>
+  </div>
+  <td><input type="button" onClick="clicke()" value="Button1"/></td>
+     <script>
+      function clicke(){
+         console.log(player.getCurrentTime ())
+     }
+   </script>
+  <p>We're using a version of videojs built from <a href="https://github.com/videojs/video.js/pull/748">this HLS feature branch.</a></p>
+</div>
+</body>
+</html>

@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-12T11:25:23.569Z</updated>
+  <updated>2016-05-12T13:03:32.687Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,16 +15,78 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[git使用手册]]></title>
+    <link href="http://yoursite.com/2016/05/12/git%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/"/>
+    <id>http://yoursite.com/2016/05/12/git使用手册/</id>
+    <published>2016-05-12T13:03:32.000Z</published>
+    <updated>2016-05-12T13:03:32.687Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[数据结构-hash表]]></title>
+    <link href="http://yoursite.com/2016/05/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-hash%E8%A1%A8/"/>
+    <id>http://yoursite.com/2016/05/12/数据结构-hash表/</id>
+    <published>2016-05-12T11:30:29.000Z</published>
+    <updated>2016-05-12T11:30:29.845Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[c++基础-异常处理]]></title>
+    <link href="http://yoursite.com/2016/05/12/c++%E5%9F%BA%E7%A1%80-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
+    <id>http://yoursite.com/2016/05/12/c++基础-异常处理/</id>
+    <published>2016-05-12T11:29:47.000Z</published>
+    <updated>2016-05-12T11:29:47.728Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[c++基础：零散知识点总结]]></title>
     <link href="http://yoursite.com/2016/05/12/c++%E5%9F%BA%E7%A1%80-%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2016/05/12/c++基础-零散知识点总结/</id>
     <published>2016-05-12T11:21:33.000Z</published>
-    <updated>2016-05-12T11:25:23.569Z</updated>
+    <updated>2016-05-12T12:54:05.984Z</updated>
     <content type="html"><![CDATA[<h1 id="c++基础：零散知识点总结">c++基础：零散知识点总结</h1><p>[TOC]</p>
-<h2 id="内联函数">内联函数</h2><h3 id="内联函数定义">内联函数定义</h3><h3 id="内联函数使用">内联函数使用</h3><h3 id="内联函数的原理">内联函数的原理</h3><h2 id="深拷贝">深拷贝</h2><h3 id="什么是深拷贝">什么是深拷贝</h3><h3 id="什么时候需要深拷贝">什么时候需要深拷贝</h3>]]></content>
+<h2 id="内联函数">内联函数</h2><h3 id="内联函数的使用">内联函数的使用</h3><p>可以通过在<strong>函数定义</strong>前添加inline关键字对函数进行修饰，则该函数为内联函数。所谓内联函数就是它在程序中每个调用点上都内联的展开。这样就可以<strong>避免函数调用的开销</strong>。一般使得一个函数成为一个内联函数有下面两种方式：</p>
+<ol>
+<li><p>在函数定义前加上inline关键字，例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123; <span class="keyword">return</span> a;&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在类声明中部分定义的函数默认为内联函数，如</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getA</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> a;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="内联函数的原理">内联函数的原理</h3><p>在程序编译阶段，编译器会将程序中出现的内联函数的调用表达式用内联函数的函数体进行替代。但是<strong>编译器在优化内联函数时，必须知道函数定义的内容，这就意味着内联函数的定义和对该函数的调用必须在同一文件中，因此在多文件程序中，每个调用内联函数的文件必须对该函数进行定义</strong>，一般的解决方法就是讲内联函数的定义放在头文件中，并在调用该函数的文件中包含此头文件。</p>
+<p><strong>内联函数的替换发生在编译的哪个阶段？</strong></p>
+<h3 id="内联函数的Q&amp;A">内联函数的Q&amp;A</h3><ol>
+<li><p>内联函数一定会内联展开吗？</p>
+<p>答案是否定的。对于内联函数，程序只是提供了一个“内联建议”，即建议编译器把函数用内联展开，但是真正是否内联，是由编译器决定的。有以下几种情况，内联函数可能会不被替换：</p>
+<ul>
+<li>对于函数体过大的函数，编译器一般不会内联，即使制定为内联函数。</li>
+<li>在内联函数内部，不允许用循环语句和开关语句（if或switch）。内联函数内部有循环和开关，也不会出错，但是编译器会把它当做非内联函数的。</li>
+<li>关键字inline必须与函数定义体放在一起才能使函数真正内联，仅把inline放在函数声明的前面不起任何作用。因为inline是一种用于实现的关键字，不是一种用于声明的关键字。内联函数的声明是不需要加inline关键字的，内联函数的定义是必须加inline的（除了类的定义部分的默认内联函数），尽管很多书声明定义都加了，要注意理解声明和定义的区别。</li>
+</ul>
+</li>
+<li>内联函数一定要定义在头文件中么？<br>通常情况下内联函数被定义在头文件中。如果内联函数的声明与定义分开。那么需要在调用该内联函数的.c文件中对该内联函数进行定义。否则在编译时会出现链接失败的错误。</li>
+<li>内联函数一定要定义在被调用之前么？<br>是的，内联函数的定义必须在第一次调用之前。注意，这里是定义之前，不仅仅是声明之前。对于普通函数，可以在调用之前声明，调用代码之后具体定义（实现函数），但是内联函数要实现内联，必须先定义再调用，否则编译器会把在定义之前调用的内联函数当做普通函数进行调用。<h2 id="constexpr_函数">constexpr 函数</h2>待更新</li>
+</ol>
+<h2 id="深拷贝">深拷贝</h2><h3 id="什么是深拷贝">什么是深拷贝</h3><h3 id="什么时候需要深拷贝">什么时候需要深拷贝</h3>]]></content>
     <summary type="html">
     <![CDATA[<h1 id="c++基础：零散知识点总结">c++基础：零散知识点总结</h1><p>[TOC]</p>
-<h2 id="内联函数">内联函数</h2><h3 id="内联函数定义">内联函数定义</h3><h3 id="内联函数使用">内联函数使用</h3><h3 id="内]]>
+<h2 id="内联函数">内联函数</h2><h3 id="内联函数的使用">内联函数的使用</h3><p>可以通过在<strong>函数定义</strong>前添加in]]>
     </summary>
     
       <category term="c" scheme="http://yoursite.com/tags/c/"/>
@@ -40,7 +102,7 @@
     <link href="http://yoursite.com/2016/04/26/c++%E5%9F%BA%E7%A1%80-%E7%B1%BB%E4%B8%8E%E7%BB%A7%E6%89%BF/"/>
     <id>http://yoursite.com/2016/04/26/c++基础-类与继承/</id>
     <published>2016-04-26T02:12:46.000Z</published>
-    <updated>2016-05-12T11:24:06.513Z</updated>
+    <updated>2016-05-12T13:28:20.058Z</updated>
     <content type="html"><![CDATA[<h1 id="c++基础-类与继承">c++基础-类与继承</h1><h2 id="c++的类">c++的类</h2><h3 id="构造函数">构造函数</h3><p>类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做构造函数。</p>
 <h4 id="默认构造函数">默认构造函数</h4><p>当类内没有声明任何构造函数的时候，编译器会自动的生成默认构造函数。这个默认构造函数被称为合成的默认构造函数。<br>合成的默认构造函数按照如下规则初始化类的数据成员：</p>
 <ol>
@@ -66,7 +128,7 @@
 <h2 id="类的继承与派生">类的继承与派生</h2><p>类派生的形式如下：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">deriver</span>:<span class="typename">public baseA</span>,<span class="typename">public baseB&#123;</span></span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="构造函数初始化顺序">构造函数初始化顺序</h3><p>首先初始化基类的部分，然后按照声明的顺序依次初始化派生类的成员。除非特别指出，派生类对象的基类部分会像数据成员一样执行默认初始化。</p>
 <h3 id="虚函数">虚函数</h3><p>在c++中，当我们使用基类的引用（或指针）调用一个虚函数时将发生动态绑定。对于虚函数简而言之，如果被设定为虚函数了，则通过父类的函数调用虚函数执行的都是子类中覆盖的虚函数。如果没有设为虚函数。则操作的还是父类中定义的函数。</p>
-<h4 id="虚函数的实现原理">虚函数的实现原理</h4><h3 id="多态">多态</h3>]]></content>
+<h4 id="虚函数的实现原理">虚函数的实现原理</h4><h3 id="多态">多态</h3><h2 id="多重继承">多重继承</h2><h2 id="虚继承">虚继承</h2>]]></content>
     <summary type="html">
     <![CDATA[<h1 id="c++基础-类与继承">c++基础-类与继承</h1><h2 id="c++的类">c++的类</h2><h3 id="构造函数">构造函数</h3><p>类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做构造函数。</p>
 <h4 id="默认]]>
@@ -139,8 +201,8 @@
     <link href="http://yoursite.com/2016/04/23/c++%E5%9F%BA%E7%A1%80-%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E9%99%90%E5%AE%9A%E7%AC%A6/"/>
     <id>http://yoursite.com/2016/04/23/c++基础-关键字与限定符/</id>
     <published>2016-04-23T10:24:33.000Z</published>
-    <updated>2016-05-09T04:57:02.232Z</updated>
-    <content type="html"><![CDATA[<h1 id="c++基础：关键字与限定符">c++基础：关键字与限定符</h1><p>[TOC]</p>
+    <updated>2016-05-13T02:21:44.068Z</updated>
+    <content type="html"><![CDATA[<p>[TOC]</p>
 <h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
 <h3 id="const修饰对象">const修饰对象</h3><blockquote>
 <ul>
@@ -153,21 +215,24 @@
 <h3 id="const修饰类成员函数">const修饰类成员函数</h3><p>const修饰类成员函数相当于把修改隐式this指针的类型，this指针默认情况下是一个指向非常量对象的常量指针。const修饰成员函数之后，this指针的类型被改变为指向常量对象的常量指针。所以const修饰函数无法改变类的成员。</p>
 <blockquote>
 <ul>
-<li>const修饰类成员函数时，表面该函数不能修改类成员，否则编译器会报错</li>
+<li>const修饰类成员函数时，表明该函数不能修改类成员，否则编译器会报错</li>
+<li><strong>特别值得注意的是当const引用只能调用const方法，否则会编译报错</strong></li>
 </ul>
 </blockquote>
-<h3 id="const修饰引用与指针">const修饰引用与指针</h3><p>详见</p>
+<h3 id="const修饰引用与指针">const修饰引用与指针</h3><p>详见 <a href="http://bu540402.github.io/2016/04/23/c++%E5%9F%BA%E7%A1%80-%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8/" target="_blank" rel="external">c++基础：指针与引</a></p>
 <h3 id="const与函数重载">const与函数重载</h3><blockquote>
 <ul>
 <li>在函数重载中，顶层const（自身是常量的对象：常量对象或者本身是常量的指针）的形参无法与非顶层const的形参区分开来。</li>
 <li>在函数重载重，底层 const（常量引用以及指向常量的指针）可以与非常量对象区别从而实现重载</li>
 </ul>
 </blockquote>
-]]></content>
+<h3 id="static限定符">static限定符</h3><h3 id="访问权限限定符:public,private,protected">访问权限限定符:public,private,protected</h3>]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="c++基础：关键字与限定符">c++基础：关键字与限定符</h1><p>[TOC]</p>
+    <![CDATA[<p>[TOC]</p>
 <h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
-<h3 id="const修饰对象">con]]>
+<h3 id="const修饰对象">const修饰对象</h3><blockquote>
+<ul>
+<li>const对象必]]>
     </summary>
     
       <category term="c" scheme="http://yoursite.com/tags/c/"/>
@@ -1365,203 +1430,6 @@ int main()
     <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
  * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
  * 解法：把n个城市拆成两个点建立边]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[ural 1040]]></title>
-    <link href="http://yoursite.com/2013/09/04/ural-1040/"/>
-    <id>http://yoursite.com/2013/09/04/ural-1040/</id>
-    <published>2013-09-04T10:08:55.000Z</published>
-    <updated>2015-11-25T04:37:58.648Z</updated>
-    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*題意：一個圖有mt條邊，給他們從1到m編號，要求有公共節點的邊的gcd爲1.問是否可以行，給出一種方案。
- * 解法：假設一個點鄰接a跳邊。則a條邊中有兩條互質即可。所以我們dfs一邊對於一個點入邊與出邊編號i與i+1
- * 則該店其他邊任意編號滿足。故按照dfs順序遍歷一遍給邊編號即可。
- */
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;deque&gt;
-#include&lt;stdio.h&gt;
-#include&lt;cstring&gt;
-using namespace std;
-#define vN 55
-#define vE 5005
-struct edge
-{
-        int v,next;
-}e[vE];
-int used[vN],en=0,head[vN];
-void addedge(int u,int v)
-{
-    e[en].v=v;
-    e[en].next=head[u];
-    head[u]=en++;
-    e[en].v=u;
-    e[en].next=head[v];
-    head[v]=en++;
-}
-int color[vE];
-int cnt=1;
-void dfs(int x)
-{
-    used[x]=1;
-    for(int i=head[x];i!=-1;i=e[i].next)
-    {
-        int v=e[i].v;
-        if(!color[i])
-        {
-            color[i]=cnt;
-            color[i^1]=cnt++;
-            //cout&lt;&lt;i&lt;&lt;endl;
-            dfs(v);
-        }
-    }
-}
-int main()
-{
-    int n,m;
-    cin&gt;&gt;n&gt;&gt;m;
-    memset(head,-1,sizeof(head));
-    memset(color,0,sizeof(color));
-    en=0;
-    for(int i=0;i&lt;m;i++)
-    {
-        int x,y;
-        cin&gt;&gt;x&gt;&gt;y;
-        addedge(x,y);
-    }
-    for(int i=1;i&lt;=n;i++)
-    {
-        if(!used[i])
-        dfs(i);
-    }
-    cout&lt;&lt;"YES"&lt;&lt;endl;
-    for(int i=0;i&lt;m;i++)
-    {
-        cout&lt;&lt;color[2*i]&lt;&lt;" ";
-    }
-    cout&lt;&lt;endl;
-}</pre>]]></content>
-    <summary type="html">
-    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*題意：一個圖有mt條邊，給他們從1到m編號，要求有公共節點的邊的gcd爲1.問是否可以行，給出一種方案。
- * 解法：假設一個點鄰接a跳邊。則a條邊中有兩條互質即可。所以我們dfs一邊對於一個點入邊]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[ural 1106]]></title>
-    <link href="http://yoursite.com/2013/09/04/ural-1106/"/>
-    <id>http://yoursite.com/2013/09/04/ural-1106/</id>
-    <published>2013-09-04T01:50:24.000Z</published>
-    <updated>2015-11-25T04:54:58.783Z</updated>
-    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：把一个图中的点分为两组，保证每个组的任意节点在另外一组一定有一个与之相邻的节点。
- * 解法：bfs一遍黑白染色。图可能不联通。只有一个节点的则不能成功分组。
- */
-#include &lt;functional&gt;
-#include &lt;algorithm&gt;
-#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-#include &lt;numeric&gt;
-#include &lt;cstring&gt;
-#include &lt;cassert&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-#include &lt;math.h&gt;
-#include &lt;ctime&gt;
-#include &lt;list&gt;
-#include &lt;set&gt;
-#include &lt;map&gt;
-#include&lt;time.h&gt;
-using namespace std;
-#define LL long long
-#define vN 105
-int adj[vN][vN];
-int used[vN],n;
-int color[vN];
-int bfs(int x)
-{
-    int cnt=0;
-    queue&lt;int&gt; q;
-    q.push(x);
-    used[x]=1;
-    color[x]=0;
-    while(!q.empty())
-    {
-        int u=q.front()
-                ;
-        q.pop();
-        cnt++;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(!used[i]&amp;&amp;adj[u][i])
-            {
-                q.push(i);
-                color[i]=1-color[u];
-                used[i]=1;
-            }
-        }
-    }
-    return cnt;
-}
-
-int main()
-{
-    //freopen("data.in","r",stdin);
-    memset(used,0,sizeof(used));
-    memset(adj,0,sizeof(adj));
-    cin&gt;&gt;n;
-    for(int i=1;i&lt;=n;i++)
-    {
-        int x;
-        while(cin&gt;&gt;x&amp;&amp;x)
-        {
-            adj[i][x]=1;
-            adj[x][i]=1;
-        }
-    }
-    int ans=-1;
-    for(int i=1;i&lt;=n;i++)
-    {
-        if(!used[i])
-        {
-            int flag=bfs(i);
-            if(flag==1)
-            {
-                ans=0;
-            }
-        }
-    }
-    if(ans==0)cout&lt;&lt;ans&lt;&lt;endl;
-    else
-    {
-        int cnt=0;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(color[i])cnt++;
-        }
-        cout&lt;&lt;cnt&lt;&lt;endl;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(color[i])
-            {
-                cout&lt;&lt;i&lt;&lt;" ";
-            }
-        }
-        cout&lt;&lt;endl;
-    }
-
-}</pre>]]></content>
-    <summary type="html">
-    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：把一个图中的点分为两组，保证每个组的任意节点在另外一组一定有一个与之相邻的节点。
- * 解法：bfs一遍黑白染色。图可能不联通。只有一个节点的则不能成功分组。
- */
-#include &lt]]>
     </summary>
     
   </entry>
