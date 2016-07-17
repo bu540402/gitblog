@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-12T13:03:32.687Z</updated>
+  <updated>2016-05-19T03:00:26.220Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,143 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[linux基础-常用命令]]></title>
+    <link href="http://yoursite.com/2016/05/18/linux%E5%9F%BA%E7%A1%80-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2016/05/18/linux基础-常用命令/</id>
+    <published>2016-05-18T00:54:12.000Z</published>
+    <updated>2016-05-19T03:00:26.220Z</updated>
+    <content type="html"><![CDATA[<h2 id="帮助类命令">帮助类命令</h2><ol>
+<li>info：列出命令的详细信息</li>
+<li>whatis: 列出命令的简要用途说明</li>
+<li>man：（待补充）</li>
+</ol>
+<h2 id="文件操作类命令">文件操作类命令</h2><ol>
+<li><p>mkdir : 创建目录</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> <span class="keyword">test</span></span><br><span class="line"><span class="keyword">mkdir</span> -p <span class="keyword">test</span>/subTest #如果<span class="keyword">test</span>是不存在的，自动创建<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rm : 删除文件或目录</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">rm</span> <span class="keyword">test</span>.txt #删除文件</span><br><span class="line"><span class="keyword">rm</span> -r <span class="keyword">test</span>  #删除目录</span><br><span class="line"><span class="keyword">rm</span> -f <span class="keyword">test</span>.txt #强制删除，不给提示</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>rmdir: 删除空目录</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rmdir</span> <span class="built_in">dir</span> #<span class="built_in">dir</span>必须为空</span><br><span class="line"><span class="built_in">rmdir</span> -p <span class="built_in">dir</span> # 递归的删除<span class="built_in">dir</span>，如果删除<span class="built_in">dir</span>的子目录之后，<span class="built_in">dir</span>为空，则删除<span class="built_in">dir</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mv ：移动文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mv src dir <span class="comment">#可以实现文件重命名</span></span><br><span class="line">mv <span class="operator">-f</span> src dir <span class="comment">#若目标文件已经存在，强制覆盖</span></span><br><span class="line">mv -i src dir <span class="comment">#若目标文件已经存在，提示覆盖</span></span><br><span class="line">mv -u src dir <span class="comment">#若目标文件已经存在，src较新时覆盖</span></span><br><span class="line">mv -t dir src1 src2 <span class="comment">#目标文件在前</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cp ：复制文件</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cp</span> srcfile dir <span class="preprocessor">#复制文件到目录下，如目录下有同名文件，则提示是否覆盖</span></span><br><span class="line"><span class="keyword">cp</span> -a dir1 dir2 <span class="preprocessor">#复制目录，若目标目录存在，则源目录复制到目标目录下，也就是说dir1在dir2，若目标目录不存在，则创建目标目录，dir1中的内容在dir2下。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cd : 目录切换</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dir <span class="comment">#进入到目录</span></span><br><span class="line"><span class="built_in">cd</span> / <span class="comment">#进入根目录</span></span><br><span class="line"><span class="built_in">cd</span> .. <span class="comment">#退到上级目录</span></span><br><span class="line"><span class="built_in">cd</span> ~ <span class="comment">#进入到当前用户目录</span></span><br><span class="line"><span class="built_in">cd</span> - <span class="comment">#返回进入到当前目录之前的目录</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ls : 列出目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="operator">-a</span> <span class="comment">#列出所有文件，包括隐藏文件</span></span><br><span class="line">ls -t <span class="comment">#按文件修改时间排序</span></span><br><span class="line">ls -S <span class="comment">#根据文件大小排序</span></span><br><span class="line">ls -h <span class="comment">#以容易理解的方式列出文件大小</span></span><br><span class="line">ls -r <span class="comment">#反序</span></span><br><span class="line">ls <span class="operator">-l</span> <span class="comment">#列出文件详情</span></span><br><span class="line">ls -X <span class="comment">#根据文件扩展名排序</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pwd ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span> <span class="comment">#显示当前完整路径</span></span><br><span class="line"><span class="built_in">pwd</span> -P <span class="comment">#显示当前实际路径（区别连接路径）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>find : 查找文件或目录（实时）</p>
+</li>
+<li>locate : 查看文件或目录（非实时，需要更新索引）</li>
+<li><p>cat :显示文件</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cat</span> <span class="keyword">file</span> #显示整个文件</span><br><span class="line"><span class="keyword">cat</span> &gt; <span class="keyword">file</span> # 创建新文件</span><br><span class="line"><span class="keyword">cat</span> file1 file2 &gt; file3 #合并文件</span><br><span class="line"><span class="keyword">cat</span> -<span class="keyword">n</span> <span class="keyword">file</span> # 对输出添加行编号</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>head:显示文件开头</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">head file <span class="preprocessor">#显示文件开头<span class="number">10</span>行</span></span><br><span class="line">head -n <span class="number">5</span> file <span class="preprocessor">#显示文件开头<span class="number">5</span>行</span></span><br><span class="line">head -c <span class="number">5</span> file <span class="preprocessor">#显示文件开头<span class="number">5</span>个字节</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tail: 显示文件末尾</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tail <span class="type">file</span> <span class="comment">#读取末尾10行</span></span><br><span class="line">tail -n <span class="number">5</span> <span class="type">file</span> <span class="comment">#读取末尾5行</span></span><br><span class="line">tail -f <span class="type">file</span> <span class="comment">#循环读取文件末尾，可以用户实时监控log文件</span></span><br><span class="line">tail -f -pid=PID <span class="type">file</span> <span class="comment">#当pid进程终止后，停止</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>diff: 比较文件差异</p>
+</li>
+<li>chown:</li>
+<li>chmod:</li>
+<li>重定向：</li>
+</ol>
+<ul>
+<li><blockquote>
+<p> 输出重定向到一个文件或设备 覆盖原来的文件</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>! 输出重定向到一个文件或设备 强制覆盖原来的文件</p>
+</blockquote>
+</li>
+<li><blockquote>
+<blockquote>
+<p>输出重定向到一个文件或设备 追加原来的文件</p>
+</blockquote>
+</blockquote>
+</li>
+<li>&lt;  输入重定向到一个程序</li>
+</ul>
+<ol>
+<li>管线命令<br>利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为 第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，</li>
+</ol>
+<h2 id="文本处理类命令">文本处理类命令</h2><ol>
+<li><p>touch ：创建新文件或修改文件时间戳</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch new<span class="class">.txt</span> #创建一个不存在的文件</span><br><span class="line">touch -t timestamp some<span class="class">.txt</span> #修改时间戳</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>grep ：文本搜索</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grep</span> match_patten file <span class="comment"># 默认访问匹配行</span></span><br><span class="line"><span class="keyword">grep</span> <span class="string">"class"</span> . -R -n  <span class="comment">#在多级目录中对文本递归搜索</span></span><br><span class="line"><span class="keyword">grep</span> -e <span class="string">"class"</span> -e <span class="string">"vitural"</span> file <span class="comment">#匹配多个模式:</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>xargs ：</p>
+</li>
+<li>sort :（待更新）</li>
+<li>uniq:</li>
+<li>tr :（待更新）</li>
+<li>cut :（待更新）</li>
+<li>paste :（待更新）</li>
+<li>wc :</li>
+<li>set :（待更新）</li>
+<li>awk :<h2 id="磁盘管理类命令">磁盘管理类命令</h2></li>
+<li>du :</li>
+<li>tar :<h2 id="进程管理类命令">进程管理类命令</h2></li>
+<li><p>ps : 列出进程</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">ps</span> -ef <span class="comment">#查询正在运行的进程信息</span></span><br><span class="line">ps -ajx <span class="comment">#以完整的格式显示所有的进程</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>top :显示进程信息，并实时更新<br>输入top命令后，进入到交互界面；接着输入字符命令后显示相应的进程状态：<br>对于进程，平时我们最常想知道的就是哪些进程占用CPU最多，占用内存最多。以下两个命令就可以满足要求:<br>P：根据CPU使用百分比大小进行排序。<br>M：根据驻留内存大小进行排序。<br>i：使top不显示任何闲置或者僵死进程。</p>
+</li>
+<li><p>lsof : 查看文件打开信息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lsof -i:<span class="number">3306</span> <span class="preprocessor">#查看端口占用的进程状态</span></span><br><span class="line">lsof -u username <span class="preprocessor">#查看用户username的进程所打开的文件</span></span><br><span class="line">lsof -c init <span class="preprocessor">#查询init进程当前打开的文件</span></span><br><span class="line">lsof -p <span class="number">23295</span> <span class="preprocessor">#查询指定的进程ID(<span class="number">23295</span>)打开的文件</span></span><br><span class="line">$lsof +d mydir1/ <span class="preprocessor">#查询指定目录下被进程开启的文件（使用+D 递归目录）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>kill :杀死进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> PID <span class="comment">#杀死pid进程</span></span><br><span class="line"><span class="built_in">kill</span> -<span class="number">9</span> <span class="number">3434</span> <span class="comment">#杀死相关进程</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pmap :来输出进程内存的状况，可以用来分析线程堆栈</p>
+<h2 id="性能监控类命令">性能监控类命令</h2></li>
+<li>sar :</li>
+<li>free :</li>
+<li>watch :<h2 id="网络类命令">网络类命令</h2></li>
+<li><p>netstat :显示各种网络相关信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat <span class="operator">-a</span> <span class="comment">#列出所有端口</span></span><br><span class="line">netstat -at <span class="comment">#列出所有tcp端口</span></span><br><span class="line">netstat <span class="operator">-l</span> <span class="comment">#列出所有监听的服务状态</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>route ：查看路由状态</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">route</span> -n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>traceroute :探测前往地址IP的路由路径:</p>
+</li>
+<li>host :DNS查询<h2 id="ipc资源管理类命令">ipc资源管理类命令</h2></li>
+<li>ipcs ：</li>
+<li>ulimit ：</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="帮助类命令">帮助类命令</h2><ol>
+<li>info：列出命令的详细信息</li>
+<li>whatis: 列出命令的简要用途说明</li>
+<li>man：（待补充）</li>
+</ol>
+<h2 id="文件操作类命令">文件操作类命令</h2><ol]]>
+    </summary>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+      <category term="操作系统" scheme="http://yoursite.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[git使用手册]]></title>
@@ -201,7 +338,7 @@
     <link href="http://yoursite.com/2016/04/23/c++%E5%9F%BA%E7%A1%80-%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E9%99%90%E5%AE%9A%E7%AC%A6/"/>
     <id>http://yoursite.com/2016/04/23/c++基础-关键字与限定符/</id>
     <published>2016-04-23T10:24:33.000Z</published>
-    <updated>2016-05-13T02:21:44.068Z</updated>
+    <updated>2016-05-18T00:52:07.396Z</updated>
     <content type="html"><![CDATA[<p>[TOC]</p>
 <h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
 <h3 id="const修饰对象">const修饰对象</h3><blockquote>
@@ -226,7 +363,22 @@
 <li>在函数重载重，底层 const（常量引用以及指向常量的指针）可以与非常量对象区别从而实现重载</li>
 </ul>
 </blockquote>
-<h3 id="static限定符">static限定符</h3><h3 id="访问权限限定符:public,private,protected">访问权限限定符:public,private,protected</h3>]]></content>
+<h2 id="static限定符">static限定符</h2><h2 id="访问说明符">访问说明符</h2><h3 id="public">public</h3><ol>
+<li>修饰类成员：可以被1.该类中的函数、2.子类的函数、3.其友元函数访问，也可以由4.该类的对象访问。</li>
+<li>公有继承：父类中的protected和public属性不发生改变</li>
+</ol>
+<h3 id="private">private</h3><ol>
+<li>修饰类成员：只能由1.该类中的函数、2.其友元函数访问。不能被任何其他访问，该类的对象也不能访问(除非该对象位于1或者2中)。<strong>private 属性不能够被继承。</strong></li>
+<li>私有继承：父类的protected和public属性在子类中变为private</li>
+</ol>
+<h3 id="protected">protected</h3><ol>
+<li>修饰类成员：可以被1.该类中的函数、2.子类的函数、以及3.其友元函数访问(除非该对象位于1或者2中)。但不能被该类的对象访问。</li>
+<li>保护性继承：父类的protected和public属性在子类中变为protected</li>
+</ol>
+<h3 id="深入探讨">深入探讨</h3><p>首先看一个例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> A &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	A(<span class="keyword">int</span> i_, <span class="keyword">int</span> j_) &#123;</span><br><span class="line">		i = i_;</span><br><span class="line">		j = j_;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">(A a)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt;<span class="string">"disp : "</span>&lt;&lt;endl;;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"\t"</span> &lt;&lt; a.i &lt;&lt; endl;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"\t"</span> &lt;&lt; a.j &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	<span class="keyword">int</span> j;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> B:<span class="keyword">public</span> A&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		B():A(<span class="number">0</span>,<span class="number">1</span>)&#123;&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> c:<span class="keyword">public</span> A&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		C():A(<span class="number">0</span>,<span class="number">1</span>)&#123;&#125;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">(A&amp; a)</span> </span>&#123;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt;<span class="string">"disp : "</span>&lt;&lt;endl;;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"\t"</span> &lt;&lt; a.i &lt;&lt; endl;</span><br><span class="line">			<span class="built_in">cout</span> &lt;&lt; <span class="string">"\t"</span> &lt;&lt; a.j &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span> </span>&#123;</span><br><span class="line">	<span class="function">A <span class="title">a1</span><span class="params">(<span class="number">123</span>, <span class="number">456</span>)</span></span>;</span><br><span class="line">	<span class="function">A <span class="title">a2</span><span class="params">(<span class="number">789</span>, <span class="number">543</span>)</span></span>;</span><br><span class="line">	B bb;</span><br><span class="line">	a1.disp(a2);<span class="comment">//正确</span></span><br><span class="line">	a2.disp(a1);<span class="comment">//正确</span></span><br><span class="line">	bb.disp(a1);<span class="comment">//正确</span></span><br><span class="line">	C c;<span class="comment">//类C会编译错误 c，C没有权限访问通过A的对象的privaite以及protected成员</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>类的本质是对数据成员以及进行于其上的一系列操作（成员函数）的一种封装。对象是类的实例化，在内存映射中每个对象仅仅保留属于自己的那份数据成员副本。而成员函数对于整个类是共享的，也就是说一个类只保留一份成员函数。成员函数通过this指针来操作同一个类的不同实例的数据成员。所以简而言之在对于使用实例来访问私有成员或者保护性成员的情况，只有在该实例出现在对应的类的成员函数中时才会出现。<em>待完善</em></p>
+<h2 id="友元_friendly">友元 friendly</h2><p>友元函数包括3种：设为友元的普通的非成员函数；设为友元的其他类的成员函数；设为友元类中的所有成员函数。</p>
+<h2 id="可变数据成员_mutable">可变数据成员 mutable</h2>]]></content>
     <summary type="html">
     <![CDATA[<p>[TOC]</p>
 <h2 id="const_限定符">const 限定符</h2><p>const限定符用于限定一个对象不能发生改变。</p>
@@ -1282,154 +1434,6 @@ int main()
  * 解法：一边根据已知的两种序列进行树的dfs同时打印出要求遍历的序列。
  */
 #include &lt;iostream&gt;]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[ural 1277]]></title>
-    <link href="http://yoursite.com/2013/09/04/ural-1277/"/>
-    <id>http://yoursite.com/2013/09/04/ural-1277/</id>
-    <published>2013-09-04T10:14:18.000Z</published>
-    <updated>2015-11-25T04:37:58.633Z</updated>
-    <content type="html"><![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
- * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
- * 解法：把n个城市拆成两个点建立边容量为Ki,其他边容量inf。看s到f的最大流是否小与k
- */
-#include &lt;functional&gt;
-#include &lt;algorithm&gt;
-#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-#include &lt;numeric&gt;
-#include &lt;cstring&gt;
-#include &lt;cassert&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-#include &lt;math.h&gt;
-#include &lt;ctime&gt;
-
-#include &lt;list&gt;
-#include &lt;set&gt;
-#include &lt;map&gt;
-#include&lt;time.h&gt;
-using namespace std;
-#define N 250
-#define E 105*105*16
-
-#define typec int                   // type of cost
-const typec inf = 0x3f3f3f3f; // max of cost
-struct edge
-{
-        int x, y, nxt;
-        typec c;
-} bf[E];
-int ne, head[N], cur[N], ps[N], dep[N];
-void addedge(int x, int y, typec c)
-{ // add an arc(x -&gt; y, c);vertex: 0 ~ n-1;
-    bf[ne].x = x;
-    bf[ne].y = y;
-    bf[ne].c = c;
-    bf[ne].nxt = head[x];
-    head[x] = ne++;
-    bf[ne].x = y;
-    bf[ne].y = x;
-    bf[ne].c = 0;
-    bf[ne].nxt = head[y];
-    head[y] = ne++;
-}
-typec flow(int n, int s, int t)
-{
-    typec tr, res = 0;
-    int i, j, k, f, r, top;
-    while (1)
-    {
-        memset(dep, -1, n * sizeof(int));
-        for (f = dep[ps[0] = s] = 0, r = 1; f != r;)
-            for (i = ps[f++], j = head[i]; j; j = bf[j].nxt)
-            {
-                if (bf[j].c &amp;&amp; -1 == dep[k = bf[j].y])
-                {
-                    dep[k] = dep[i] + 1;
-                    ps[r++] = k;
-                    if (k == t)
-                    {
-                        f = r;
-                        break;
-                    }
-                }
-            }
-        if (-1 == dep[t])
-            break;
-        memcpy(cur, head, n * sizeof(int));
-        for (i = s, top = 0;;)
-        {
-            if (i == t)
-            {
-                for (k = 0, tr = inf; k &lt; top; ++k)
-                    if (bf[ps[k]].c &lt; tr)
-                        tr = bf[ps[f = k]].c;
-                for (k = 0; k &lt; top; ++k)
-                    bf[ps[k]].c -= tr, bf[ps[k] ^ 1].c += tr;
-                res += tr;
-                i = bf[ps[top = f]].x;
-            }
-            for (j = cur[i]; cur[i]; j = cur[i] = bf[cur[i]].nxt)
-                if (bf[j].c &amp;&amp; dep[i] + 1 == dep[bf[j].y])
-                    break;
-            if (cur[i])
-            {
-                ps[top++] = cur[i];
-                i = bf[cur[i]].y;
-            }
-            else
-            {
-                if (0 == top)
-                    break;
-                dep[i] = -1;
-                i = bf[ps[--top]].x;
-            }
-        }
-    }
-    return res;
-}
-int base[N];
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    int k, n,m,s, f;
-    ne = 2;
-    memset(head, 0, sizeof(head));
-    cin &gt;&gt; k;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; f;
-
-    for (int i = 1; i &lt;= n; i++)
-    {
-        cin &gt;&gt; base[i];
-        if(i==s||i==f)base[i]=inf;
-        addedge(2 * i - 1, 2 * i, base[i]);
-
-    }
-    for (int i = 0; i &lt; m; i++)
-    {
-        int x, y;
-        cin &gt;&gt; x &gt;&gt; y;
-        addedge(2 * x, 2 * y - 1, inf);
-        addedge(2 * y, 2 * x - 1, inf);
-    }
-    n = 2 * n;
-    int res=flow(n+1,2 * s - 1, 2 * f);
-    if(res&gt;k)cout&lt;&lt;"NO"&lt;&lt;endl;
-    else cout&lt;&lt;"YES"&lt;&lt;endl;
-
-}</pre>]]></content>
-    <summary type="html">
-    <![CDATA[<pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
- * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
- * 解法：把n个城市拆成两个点建立边]]>
     </summary>
     
   </entry>

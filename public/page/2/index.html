@@ -71,6 +71,93 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-c++基础-指针与引用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/23/c++基础-指针与引用/" class="article-date">
+  <time datetime="2016-04-23T07:38:36.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/c++基础-指针与引用/">c++基础：指针与引用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="c++基础：指针与引用">c++基础：指针与引用</h1><p>[TOC]</p>
+<h2 id="引用">引用</h2><h3 id="引用基础">引用基础</h3><p>普通的引用通常是指左值引用。引用（reference）为对象起了另一个名字，引用类型引用另一种类型。引用类型并非对象，相反的，它只是为一个已经存在的对象所起的另一个名字。定义引用时，程序把引用和他的初始值绑定（bind）在一起。引用是必须会被初始化的，而且不能再将引用绑定在另一个对象上。</p>
+<blockquote>
+<ol>
+<li><strong> 引用并非对象，所以不能定义引用的引用。</strong></li>
+<li><strong> 非常量引用只能绑定在对象上，而不能绑定字面指或者表达式结果。</strong></li>
+<li><strong>不要返回局部对象的引用或者指针，因为函数完成后他所占用的存储空间也会随之释放，因为局部变量的引用将指向不再有效的内存区域</strong></li>
+</ol>
+</blockquote>
+<h3 id="常量引用">常量引用</h3><p>常量引用是对const的引用。对常量的引用不能被用作修改它所绑定的对象。</p>
+<blockquote>
+<ol>
+<li>非常量引用不能引用一个常量对象</li>
+<li>常量引用可以引用常量对象也可以引用普通对象</li>
+<li><strong>常量引用可以绑定字面指或者表达式结（因为这些值也是常量）</strong><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下合法</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span>&amp; refExpression=<span class="number">10</span>*<span class="number">5.012</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h3 id="右值引用">右值引用</h3><p>函数的返回类型决定函数调用是否为左值，调用一个返回引用的函数得到左值，其他类型得到右值。例如可以这样<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> &amp;<span class="title">getVal</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">getVal()=<span class="string">'F'</span>;</span><br></pre></td></tr></table></figure></p>
+<p>等待更新</p>
+<h2 id="指针">指针</h2><h3 id="指针基础">指针基础</h3><p>指针是用来存储地址的变量。他是指向另一种类型的复合类型。<strong> 指针本身就是一个对象，允许对指针赋值和拷贝。在其声明周期内可以指向不同的对象</strong>。指针无需再定义时赋值，没有被初始化的指针拥有一个不确定的值。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明指针的两种形式</span></span><br><span class="line"><span class="keyword">int</span> *p,*q;</span><br><span class="line"><span class="keyword">int</span>* p;</span><br><span class="line"><span class="keyword">int</span>* q;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><strong> 初始化所有的指针，未初始化的指针可能会引起程序运行时错误 。</strong></li>
+<li><strong> void<em>指针可以存放任意对象的指针但是无法访问其指向的内存空间的内容 。使用static_cast 可以将void</em> 转换成原有的类型指针，如果类型不符合将产生未定义的后果</strong></li>
+</ol>
+</blockquote>
+<h3 id="指针常量">指针常量</h3><p>指针常量是指向常量的指针。不能用于改变其所值得对象的值。常量对象只能用指针常量来指向。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;a;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ol>
+<li><strong> 指针常量允许指向一个非常量对象。</strong></li>
+<li><strong> 指针常量的指向是可以更改的，可以指向其他帝乡。</strong></li>
+</ol>
+</blockquote>
+<h3 id="常量指针">常量指针</h3><p>指针本身是一个对象，如果指针被声明为常量指针，该指针本身是一个常量，一旦指定一个对象不能再做更改。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p=&amp;a;<span class="comment">//p不能再指向其他对象，可以通过p改变a</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> b2=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> q=&amp;b2;<span class="comment">//q本身是指向一个常量的常量指针。不能通过q改变对象，q的指向也不能改变。</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="函数指针">函数指针</h3><h2 id="指针与引用的对比">指针与引用的对比</h2><h3 id="顶层const与底层const">顶层const与底层const</h3><p>顶层const 表示指针本身是常量<br>底层const 表示指针所指的对象是常量</p>
+<h3 id="指针与引用的优劣">指针与引用的优劣</h3><ul>
+<li><em>指针可以为空或者未初始化的状态而引用必须初始化，从这个角度来讲指针比引用更危险。</em></li>
+<li><em>通过指针new出来的空间必须delete才能释放掉。可能会造成内存泄漏</em></li>
+<li><em>通过引用来传递参数,可以减少对象的复制，增强效率</em></li>
+</ul>
+<h3 id="指针和引用作为函数参数分别适用于什么情况">指针和引用作为函数参数分别适用于什么情况</h3><h3 id="指向指针的引用">指向指针的引用</h3><p>指针的引用，相当于一个指针。保持和原来指针一样的属性。然后似乎并没有指向引用的指针。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> str=<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> dataA=<span class="number">10</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* dataPrtA=&amp;dataA;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> dataB=<span class="number">20</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* dataPrtB=&amp;dataB;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span>* &amp;dataRef=dataPrtA;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*dataRef&lt;&lt;endl;</span><br><span class="line">	dataRef=dataPrtB;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*dataRef&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2016/04/23/c++基础-指针与引用/" data-id="ciodpmwa00014bcwyekn4y3eh" class="article-share-link" data-share="baidu" data-title="c++基础：指针与引用">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2016/04/23/c++基础-指针与引用/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程语言/">编程语言</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/11/24/hello-world/" class="article-date">
@@ -107,7 +194,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2015/11/24/hello-world/" data-id="cio55hqad000otcwyl8wxr4xi" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
+        <a data-url="http://yoursite.com/2015/11/24/hello-world/" data-id="ciodpmw9m000sbcwykm631hyz" class="article-share-link" data-share="baidu" data-title="Hello World">分享到</a>
       
 
       
@@ -269,7 +356,7 @@ int bs(int a[], int l, int h, int v)
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2014/06/11/二分搜索总结/" data-id="cio55hq9i000etcwyyugx3efb" class="article-share-link" data-share="baidu" data-title="二分搜索总结">分享到</a>
+        <a data-url="http://yoursite.com/2014/06/11/二分搜索总结/" data-id="ciodpmw8v000ebcwy31qwssjm" class="article-share-link" data-share="baidu" data-title="二分搜索总结">分享到</a>
       
 
       
@@ -380,7 +467,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/10/11/ural-1613/" data-id="cio55hq9i000gtcwy2j4bkjqp" class="article-share-link" data-share="baidu" data-title="ural 1613">分享到</a>
+        <a data-url="http://yoursite.com/2013/10/11/ural-1613/" data-id="ciodpmw90000gbcwyd8tmeyd0" class="article-share-link" data-share="baidu" data-title="ural 1613">分享到</a>
       
 
       
@@ -629,7 +716,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/10/ural-1016/" data-id="cio55hqad000ntcwyketmz3he" class="article-share-link" data-share="baidu" data-title="ural 1016">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/10/ural-1016/" data-id="ciodpmw9e000nbcwynk5nosof" class="article-share-link" data-share="baidu" data-title="ural 1016">分享到</a>
       
 
       
@@ -793,7 +880,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/" data-id="cio55hqad000ptcwy5zgplg7u" class="article-share-link" data-share="baidu" data-title="hdu 4714  Tree2cycle">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/09/hdu-4714-Tree2cycle/" data-id="ciodpmw9o000tbcwyy5xmukba" class="article-share-link" data-share="baidu" data-title="hdu 4714  Tree2cycle">分享到</a>
       
 
       
@@ -905,7 +992,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/06/ural-1109/" data-id="cio55hq9x000ktcwygjuci98n" class="article-share-link" data-share="baidu" data-title="ural 1109">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/06/ural-1109/" data-id="ciodpmw99000kbcwy83kvg0xw" class="article-share-link" data-share="baidu" data-title="ural 1109">分享到</a>
       
 
       
@@ -1034,7 +1121,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/06/ural-1208/" data-id="cio55hq9x000jtcwyipvayf64" class="article-share-link" data-share="baidu" data-title="ural 1208">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/06/ural-1208/" data-id="ciodpmw97000jbcwyrmfyhplc" class="article-share-link" data-share="baidu" data-title="ural 1208">分享到</a>
       
 
       
@@ -1171,7 +1258,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/06/ural-1930/" data-id="cio55hq9i000ftcwy8fg4ele0" class="article-share-link" data-share="baidu" data-title="ural 1930">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/06/ural-1930/" data-id="ciodpmw8y000fbcwy85scccbi" class="article-share-link" data-share="baidu" data-title="ural 1930">分享到</a>
       
 
       
@@ -1280,186 +1367,11 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/05/ural-1210/" data-id="cio55hq9i000itcwyxwp2do4c" class="article-share-link" data-share="baidu" data-title="ural 1210">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/05/ural-1210/" data-id="ciodpmw95000ibcwynbzl1daj" class="article-share-link" data-share="baidu" data-title="ural 1210">分享到</a>
       
 
       
         <a href="http://yoursite.com/2013/09/05/ural-1210/#ds-thread" class="article-comment-link">評論</a>
-      
-
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ural-1277" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/09/04/ural-1277/" class="article-date">
-  <time datetime="2013-09-04T10:14:18.000Z" itemprop="datePublished">2013-09-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/09/04/ural-1277/">ural 1277</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
- * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
- * 解法：把n个城市拆成两个点建立边容量为Ki,其他边容量inf。看s到f的最大流是否小与k
- */
-#include &lt;functional&gt;
-#include &lt;algorithm&gt;
-#include &lt;iostream&gt;
-#include &lt;iomanip&gt;
-#include &lt;numeric&gt;
-#include &lt;cstring&gt;
-#include &lt;cassert&gt;
-#include &lt;cstdio&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-#include &lt;bitset&gt;
-#include &lt;queue&gt;
-#include &lt;stack&gt;
-#include &lt;math.h&gt;
-#include &lt;ctime&gt;
-
-#include &lt;list&gt;
-#include &lt;set&gt;
-#include &lt;map&gt;
-#include&lt;time.h&gt;
-using namespace std;
-#define N 250
-#define E 105*105*16
-
-#define typec int                   // type of cost
-const typec inf = 0x3f3f3f3f; // max of cost
-struct edge
-{
-        int x, y, nxt;
-        typec c;
-} bf[E];
-int ne, head[N], cur[N], ps[N], dep[N];
-void addedge(int x, int y, typec c)
-{ // add an arc(x -&gt; y, c);vertex: 0 ~ n-1;
-    bf[ne].x = x;
-    bf[ne].y = y;
-    bf[ne].c = c;
-    bf[ne].nxt = head[x];
-    head[x] = ne++;
-    bf[ne].x = y;
-    bf[ne].y = x;
-    bf[ne].c = 0;
-    bf[ne].nxt = head[y];
-    head[y] = ne++;
-}
-typec flow(int n, int s, int t)
-{
-    typec tr, res = 0;
-    int i, j, k, f, r, top;
-    while (1)
-    {
-        memset(dep, -1, n * sizeof(int));
-        for (f = dep[ps[0] = s] = 0, r = 1; f != r;)
-            for (i = ps[f++], j = head[i]; j; j = bf[j].nxt)
-            {
-                if (bf[j].c &amp;&amp; -1 == dep[k = bf[j].y])
-                {
-                    dep[k] = dep[i] + 1;
-                    ps[r++] = k;
-                    if (k == t)
-                    {
-                        f = r;
-                        break;
-                    }
-                }
-            }
-        if (-1 == dep[t])
-            break;
-        memcpy(cur, head, n * sizeof(int));
-        for (i = s, top = 0;;)
-        {
-            if (i == t)
-            {
-                for (k = 0, tr = inf; k &lt; top; ++k)
-                    if (bf[ps[k]].c &lt; tr)
-                        tr = bf[ps[f = k]].c;
-                for (k = 0; k &lt; top; ++k)
-                    bf[ps[k]].c -= tr, bf[ps[k] ^ 1].c += tr;
-                res += tr;
-                i = bf[ps[top = f]].x;
-            }
-            for (j = cur[i]; cur[i]; j = cur[i] = bf[cur[i]].nxt)
-                if (bf[j].c &amp;&amp; dep[i] + 1 == dep[bf[j].y])
-                    break;
-            if (cur[i])
-            {
-                ps[top++] = cur[i];
-                i = bf[cur[i]].y;
-            }
-            else
-            {
-                if (0 == top)
-                    break;
-                dep[i] = -1;
-                i = bf[ps[--top]].x;
-            }
-        }
-    }
-    return res;
-}
-int base[N];
-int main()
-{
-    //freopen("data.in", "r", stdin);
-    int k, n,m,s, f;
-    ne = 2;
-    memset(head, 0, sizeof(head));
-    cin &gt;&gt; k;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; f;
-
-    for (int i = 1; i &lt;= n; i++)
-    {
-        cin &gt;&gt; base[i];
-        if(i==s||i==f)base[i]=inf;
-        addedge(2 * i - 1, 2 * i, base[i]);
-
-    }
-    for (int i = 0; i &lt; m; i++)
-    {
-        int x, y;
-        cin &gt;&gt; x &gt;&gt; y;
-        addedge(2 * x, 2 * y - 1, inf);
-        addedge(2 * y, 2 * x - 1, inf);
-    }
-    n = 2 * n;
-    int res=flow(n+1,2 * s - 1, 2 * f);
-    if(res&gt;k)cout&lt;&lt;"NO"&lt;&lt;endl;
-    else cout&lt;&lt;"YES"&lt;&lt;endl;
-
-}</pre>
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://yoursite.com/2013/09/04/ural-1277/" data-id="cio55hq9i000htcwya5vr2shf" class="article-share-link" data-share="baidu" data-title="ural 1277">分享到</a>
-      
-
-      
-        <a href="http://yoursite.com/2013/09/04/ural-1277/#ds-thread" class="article-comment-link">評論</a>
       
 
       
@@ -1485,7 +1397,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">標簽</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1494,7 +1406,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">標簽雲</h3>
     <div class="widget tagcloud">
-      <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/编程语言/" style="font-size: 20px;">编程语言</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a>
+      <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/编程语言/" style="font-size: 20px;">编程语言</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a>
     </div>
   </div>
 
@@ -1503,7 +1415,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">歸檔</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -1513,6 +1425,10 @@ int main()
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/18/linux基础-常用命令/">linux基础-常用命令</a>
+          </li>
         
           <li>
             <a href="/2016/05/12/git使用手册/">git使用手册</a>
@@ -1528,10 +1444,6 @@ int main()
         
           <li>
             <a href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
           </li>
         
       </ul>

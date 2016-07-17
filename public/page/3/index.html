@@ -71,6 +71,181 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-ural-1277" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/09/04/ural-1277/" class="article-date">
+  <time datetime="2013-09-04T10:14:18.000Z" itemprop="datePublished">2013-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/09/04/ural-1277/">ural 1277</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre config="brush:cpp;toolbar:false;">/*题意：有n个城市，m条边。现在有一群坏人从s到f城市，如果小防止坏人从i城市经过需要在该城市
+ * 拍前ki个警察。现在总共有k个警察问能否防止坏人从s到达f
+ * 解法：把n个城市拆成两个点建立边容量为Ki,其他边容量inf。看s到f的最大流是否小与k
+ */
+#include &lt;functional&gt;
+#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;numeric&gt;
+#include &lt;cstring&gt;
+#include &lt;cassert&gt;
+#include &lt;cstdio&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;bitset&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;math.h&gt;
+#include &lt;ctime&gt;
+
+#include &lt;list&gt;
+#include &lt;set&gt;
+#include &lt;map&gt;
+#include&lt;time.h&gt;
+using namespace std;
+#define N 250
+#define E 105*105*16
+
+#define typec int                   // type of cost
+const typec inf = 0x3f3f3f3f; // max of cost
+struct edge
+{
+        int x, y, nxt;
+        typec c;
+} bf[E];
+int ne, head[N], cur[N], ps[N], dep[N];
+void addedge(int x, int y, typec c)
+{ // add an arc(x -&gt; y, c);vertex: 0 ~ n-1;
+    bf[ne].x = x;
+    bf[ne].y = y;
+    bf[ne].c = c;
+    bf[ne].nxt = head[x];
+    head[x] = ne++;
+    bf[ne].x = y;
+    bf[ne].y = x;
+    bf[ne].c = 0;
+    bf[ne].nxt = head[y];
+    head[y] = ne++;
+}
+typec flow(int n, int s, int t)
+{
+    typec tr, res = 0;
+    int i, j, k, f, r, top;
+    while (1)
+    {
+        memset(dep, -1, n * sizeof(int));
+        for (f = dep[ps[0] = s] = 0, r = 1; f != r;)
+            for (i = ps[f++], j = head[i]; j; j = bf[j].nxt)
+            {
+                if (bf[j].c &amp;&amp; -1 == dep[k = bf[j].y])
+                {
+                    dep[k] = dep[i] + 1;
+                    ps[r++] = k;
+                    if (k == t)
+                    {
+                        f = r;
+                        break;
+                    }
+                }
+            }
+        if (-1 == dep[t])
+            break;
+        memcpy(cur, head, n * sizeof(int));
+        for (i = s, top = 0;;)
+        {
+            if (i == t)
+            {
+                for (k = 0, tr = inf; k &lt; top; ++k)
+                    if (bf[ps[k]].c &lt; tr)
+                        tr = bf[ps[f = k]].c;
+                for (k = 0; k &lt; top; ++k)
+                    bf[ps[k]].c -= tr, bf[ps[k] ^ 1].c += tr;
+                res += tr;
+                i = bf[ps[top = f]].x;
+            }
+            for (j = cur[i]; cur[i]; j = cur[i] = bf[cur[i]].nxt)
+                if (bf[j].c &amp;&amp; dep[i] + 1 == dep[bf[j].y])
+                    break;
+            if (cur[i])
+            {
+                ps[top++] = cur[i];
+                i = bf[cur[i]].y;
+            }
+            else
+            {
+                if (0 == top)
+                    break;
+                dep[i] = -1;
+                i = bf[ps[--top]].x;
+            }
+        }
+    }
+    return res;
+}
+int base[N];
+int main()
+{
+    //freopen("data.in", "r", stdin);
+    int k, n,m,s, f;
+    ne = 2;
+    memset(head, 0, sizeof(head));
+    cin &gt;&gt; k;
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; s &gt;&gt; f;
+
+    for (int i = 1; i &lt;= n; i++)
+    {
+        cin &gt;&gt; base[i];
+        if(i==s||i==f)base[i]=inf;
+        addedge(2 * i - 1, 2 * i, base[i]);
+
+    }
+    for (int i = 0; i &lt; m; i++)
+    {
+        int x, y;
+        cin &gt;&gt; x &gt;&gt; y;
+        addedge(2 * x, 2 * y - 1, inf);
+        addedge(2 * y, 2 * x - 1, inf);
+    }
+    n = 2 * n;
+    int res=flow(n+1,2 * s - 1, 2 * f);
+    if(res&gt;k)cout&lt;&lt;"NO"&lt;&lt;endl;
+    else cout&lt;&lt;"YES"&lt;&lt;endl;
+
+}</pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://yoursite.com/2013/09/04/ural-1277/" data-id="ciodpmw93000hbcwykzt7rrqy" class="article-share-link" data-share="baidu" data-title="ural 1277">分享到</a>
+      
+
+      
+        <a href="http://yoursite.com/2013/09/04/ural-1277/#ds-thread" class="article-comment-link">評論</a>
+      
+
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-ural-1040" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/09/04/ural-1040/" class="article-date">
@@ -165,7 +340,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/04/ural-1040/" data-id="cio55hq9x000mtcwyh1m3s8n9" class="article-share-link" data-share="baidu" data-title="ural 1040">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/04/ural-1040/" data-id="ciodpmw9c000mbcwyt24wvf01" class="article-share-link" data-share="baidu" data-title="ural 1040">分享到</a>
       
 
       
@@ -307,7 +482,7 @@ int main()
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://yoursite.com/2013/09/04/ural-1106/" data-id="cio55hq9x000ltcwylsx2rmhk" class="article-share-link" data-share="baidu" data-title="ural 1106">分享到</a>
+        <a data-url="http://yoursite.com/2013/09/04/ural-1106/" data-id="ciodpmw9b000lbcwyamgsv5eg" class="article-share-link" data-share="baidu" data-title="ural 1106">分享到</a>
       
 
       
@@ -337,7 +512,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">標簽</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编程语言/">编程语言</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -346,7 +521,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">標簽雲</h3>
     <div class="widget tagcloud">
-      <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/编程语言/" style="font-size: 20px;">编程语言</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a>
+      <a href="/tags/c/" style="font-size: 20px;">c</a> <a href="/tags/c/" style="font-size: 20px;">c++</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/tags/编程语言/" style="font-size: 20px;">编程语言</a> <a href="/tags/进程/" style="font-size: 10px;">进程</a>
     </div>
   </div>
 
@@ -355,7 +530,7 @@ int main()
   <div class="widget-wrap">
     <h3 class="widget-title">歸檔</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">9</span></li></ul>
     </div>
   </div>
 
@@ -365,6 +540,10 @@ int main()
     <h3 class="widget-title">近期文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/05/18/linux基础-常用命令/">linux基础-常用命令</a>
+          </li>
         
           <li>
             <a href="/2016/05/12/git使用手册/">git使用手册</a>
@@ -380,10 +559,6 @@ int main()
         
           <li>
             <a href="/2016/05/12/c++基础-零散知识点总结/">c++基础：零散知识点总结</a>
-          </li>
-        
-          <li>
-            <a href="/2016/04/26/c++基础-类与继承/">c++基础-类与继承</a>
           </li>
         
       </ul>
